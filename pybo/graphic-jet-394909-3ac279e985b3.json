@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "graphic-jet-394909",
+  "private_key_id": "3ac279e985b35b0696fe996990345ff293340635",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCdUOodaBJVU28e\naJW4eglwnbaXwLgNHJLL/RaFCM30Ai0jp6IrEqW+Bnx3YplkFMxpubGtTzv5i2oD\nZ+ohGRL9C3KjYHpNgE/Pm6OP9GbTuv7v67EMEq/btTDg9vkE2qLg2sNliX+mOgFr\nUN/dEJSOiNfrw/EDXMjMXe2bb3jxmVZFZ1pd+ZGCH91xSBo7W43P7vPFun4Zpp0Y\n0SHmhq+yIw2/yv581kSNn4Fb9OVqHWHS7f25iZNgmbcrpeZ13+FM9qBaeQ70PWry\nxptwNtCmNTqOHultlWv4Udso05hut7Mf1hHxHFClgPwN46Jou9f5TqkS7F/T22nR\nedQzcqeZAgMBAAECggEABjamcI/mPXmEp4pQ847aZZjNF/RUMKxivezaoVmGLO+T\nEdfyp0newwEllF+QGGxb4IclledNwp73inflvvXrEpSLrBlI61u4i0Yl8S8hipZV\nsGs6PHRWftKKwi/vCPqLuV7and2O7aVX3gG9PdGEVJbiFF1SXSQiiDPjiSKff8dT\nQi7qj1dEwSX97TnEI4YTChZU43+w+zc0WfowFhkpqF6b3SmQqTJ1Sj0/1uU0ITdK\n5U5te3PFEQmh2QQ0989q0sfML3ZBlvtuFUcnmTTOyB/exlDyyvMs4kRGL9epxFnL\nHH9aK5Eunk0q++jSif36qGp0PxVHU+FGaipmoW9MCwKBgQDZZpERASU9SQ3PL3H6\nIKas/7C+UF6QJv3X1PPoLEve1FExbs1wrQ1LIHBnj1/mWnZpKUmLb/1xwr84l7SQ\nXItPt5y+d/6H5Br8PZcS7GUXtfUhEOx9vGZq7qLIh5gVOz7OXr5r/K6JGKTD7lU/\nkoB/BpKuCRoCotfHsUSzCu8lrwKBgQC5P1hdN0PHWXwqt/PCUcWvTGxlo5YiLP3E\ngWAcrBytAy1eV3mwjHj3YSnzQ4D3gNmMD9KN5FlLnkdkwCUpMnZHr7IahzNdWoEr\n1Nv50UQy/IxcU4nWKrvNnbhTDQwUYiWGhjOevj8uAt4rQj1LRI1FOmzLws9OlpLC\nq2BrAKohNwKBgBiwqFsJCUSrjlDwb35bxPIy28zRbdvrQbsIaWb92OQGsu3tSpG4\nZaEZnwpz4w1TSs1orfyTDHKmDneL6yrWB9BW5wtOr26ZfmMVT5oLlPOba6qEtIcX\nJX6ReZVSqPgIUXq4keHLwbq6PMQvxijBJ6zFf1UanYSdH+qC/G1lGYHrAoGAUks7\nvB1i9Nph+LBDj524DkoLFZP4jDIkgflfcx1al9mDfBesLawZyPvXIQRp9Im/GyOk\nS/iXWqpz2OQrHgQW233Hx1Usklo0a/5hwrcebvAWgqVx5DyTtaJNUkfHh/6Z4QsZ\nP3oQoyYPAHSquhc4EvsDffmLEsR9ahGsAZ0H9z0CgYBTdsCStrP9xbzV6eNoi7D8\n5Gx7XrhLwjTX9OMepbB5jjBJaDTCuSXjIAH2g8AEb1mhv2DlO/SK7qU+s+OwTCkK\nP3FN3PjXYhnoRj+idV0IQSAV4pNXRjcrw2z7zRS57rtiOYQ8MxZtMbR2GJkIt7yx\nBXb52upCNueyqQpKfm8tKA==\n-----END PRIVATE KEY-----\n",
+  "client_email": "visionocr@graphic-jet-394909.iam.gserviceaccount.com",
+  "client_id": "106411675518438574825",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/visionocr%40graphic-jet-394909.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

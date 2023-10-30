@@ -1,10 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+{% load static %}
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
-    <p>hello world</p>
+<body style="padding: 50px ">
+<!--    <h2>hello world</h2>-->
+
+<img src="../media/image.png" width="300px">
+    <div>{{ texts }}</div>
+        {% if texts %}
+        {% for item in texts %}
+            <div>
+                {{ forloop.counter }}
+                {{ item }}
+            </div>
+        {% endfor %}
+        {% else %}
+            <p colspan="3">단어가 없습니다.</p>
+        {% endif %}
+<!--    <img src="./pybo/테스트4.png">-->
+    <div style="padding-top: 500px">테스트를 위한 공란</div>
+
+    <h3>이미지 첨부하기~</h3><hr>
+    <form action="{% url 'pybo:create' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit">
+    </form>
+
+
+<!--<form method="post" enctype="multipart/form-data">-->
+<!--  {% csrf_token %}-->
+<!--  {{ form.as_p }}-->
+<!--  <button type="submit">Upload</button>-->
+<!--</form>-->
 </body>
 </html>

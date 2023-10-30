@@ -17,9 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from pybo import views
+from pybo.views import base_views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("pybo/", include('pybo.urls')),
-    # path("ocr/",include('ocr.urls')),
+    path("pybo/", include('pybo.urls')), #파이보 내의 유알엘을 참고해라
+    path("common/",include('common.urls')),
+    path('', base_views.index, name='index'), #파이보의 뷰스의 인덱스를 띄운다
 ]
