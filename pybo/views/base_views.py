@@ -50,7 +50,7 @@ def detail(request, question_id):
     return render(request, 'pybo/question_detail.html', context)
 
 def ocr_page(request):
-    texts = Nice("/Users/sim-onejin/Coding/python/projects/mysite/pybo/테스트4.png")
+    texts = Nice("~/mysite/pybo/테스트4.png")
     context = {'texts': texts}
     return render(request, 'pybo/ocr.html', context)
 
