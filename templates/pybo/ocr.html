@@ -24,7 +24,7 @@
     <div style="padding-top: 500px">테스트를 위한 공란</div>
 
     <h3>이미지 첨부하기~</h3><hr>
-    <form action="{% url 'pybo:create' %}" method="POST" enctype="multipart/form-data">
+    <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
         <input type="submit">
