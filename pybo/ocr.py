@@ -117,7 +117,7 @@ def Nice(image_path_test):
                 group_texts_combined = ''.join(group_texts)
                 group_texts_list.append(group_texts_combined)  # 텍스트 값을 리스트에 추가
 
-                print(group_texts_list)
+                # print(group_texts_list)
                 # print(extract_japanese(group_texts))
 
         # im.show()
