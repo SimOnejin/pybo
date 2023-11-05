@@ -44,7 +44,7 @@ def Nice(image_path_test):
         non_korean_texts = []
 
         # 한글 문자를 찾기 위한 정규 표현식
-        pattern = re.compile(r'[\uAC00-\uD7A3]')
+        pattern = re.compile('[\uAC00-\uD7A3a-zA-Z0-9]+')
 
         for text in texts:
             if not pattern.search(text.description):
