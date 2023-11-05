@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from .views import base_views, question_views, answer_views
+from .views import base_views, question_views, answer_views, comment_views, vote_views
 
 # 이미지를 업로드하자
 from django.conf.urls.static import static
@@ -34,8 +34,12 @@ urlpatterns = [
     path('answer/vote/<int:answer_id>/', answer_views.answer_vote, name='answer_vote'),
 
 
+    #path의 첫번째 인자""는 주소창에 보일주소, 두번째는 호출할 함수
+    # path("ocr/", views.base_views.ocr_page, name='ocr_page'),
+    # path('ocr/', views.base_views.upload_image, name='upload_image'),
 
-    path("ocr/", views.base_views.ocr_page, name='ocr_page'),
+    path('ocr/<int:question_id>/',
+         base_views.ocrTest, name='ocrTest'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

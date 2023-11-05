@@ -12,3 +12,8 @@ input[type=submit] {
     border-top: dotted 1px #ddd;
     font-size: 0.7em;
 }
+
+tr.text-center td {
+    max-height: 10px;
+    overflow: hidden;
+}

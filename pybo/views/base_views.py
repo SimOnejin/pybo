@@ -1,11 +1,15 @@
 from django.core.paginator import Paginator
 from django.db.models import Q, Count
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
+from django.conf import settings
+import os
 
 from ..models import Question
 from ..models import Article
 
 from ..ocr import Nice
+from ..forms import UserImageForm
+
 
 def index(request):
     """
@@ -49,9 +53,37 @@ def detail(request, question_id):
     context = {'question': question}
     return render(request, 'pybo/question_detail.html', context)
 
-def ocr_page(request):
-    texts = Nice("../mysite/pybo/테스트4.png")
-    context = {'texts': texts}
+# def ocr_page(request, question_id):
+#     question = get_object_or_404(Question, pk=question_id)
+#     image_url = question.image.url
+#     texts = Nice(image_url)
+#     context = {'texts': texts, 'question': question}
+#     return render(request, 'pybo/ocr.html', context)
+    # return redirect('pybo:detail', question_id=question.id)
+
+# def ocr_page(request):
+#     texts = Nice("../mysite/pybo/테스트4.png")
+#     context = {'texts': texts}
+#     return render(request, 'pybo/ocr.html', context)
+
+def ocrTest(request, question_id):
+    question = get_object_or_404(Question, pk=question_id)
+    # image_url = question.image.url
+    image_path = os.path.join(settings.MEDIA_ROOT, question.image.name)
+    if not os.path.isfile(image_path):
+        # 파일이 존재하지 않을 때 처리할 로직
+        pass
+    else:
+        # 파일이 존재하면 처리 계속하기
+        texts = Nice(image_path)
+
+    # 파일 경로와 확장자를 분리
+    file_path, file_extension = os.path.splitext(question.image.name)
+    # 문구 추가
+    new_image_path = file_path + '_lined' + file_extension
+
+    # texts = Nice(image_url)
+    context = {'texts': texts, 'image':new_image_path}
     return render(request, 'pybo/ocr.html', context)
 
 def create(request):
@@ -59,3 +91,13 @@ def create(request):
         form = Article(request.POST, request.FILES)
         if form.is_valid():
             article = form.save()
+
+def upload_image(request):
+    if request.method == 'POST':
+        form = UserImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            # 여기에서 성공 메시지를 추가하거나 다른 처리를 할 수 있습니다.
+    else:
+        form = UserImageForm()
+    return render(request, 'pybo/ocr.html', {'form': form})

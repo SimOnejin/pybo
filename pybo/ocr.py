@@ -18,7 +18,7 @@ def Nice(image_path_test):
     # 이미지 파일 경로
     # image_path = './image/테스트단어.png' #250/20 10,30,400,150
     # image_path = './image/테스트단어2.png'
-    # image_path = './테스트4.png'
+    # image_path = '../테스트4.png'
     image_path = image_path_test
 
     # 이미지 열기
@@ -121,6 +121,14 @@ def Nice(image_path_test):
                 # print(extract_japanese(group_texts))
 
         # im.show()
+
+        # 파일 경로와 확장자를 분리
+        file_path, file_extension = os.path.splitext(image_path)
+        # 문구 추가
+        new_image_path = file_path + '_lined' + file_extension
+        # 변경된 파일 이름으로 이미지 저장
+        im.save(new_image_path)
+
         return group_texts_list  # 텍스트 값이 저장된 리스트 반환
 
     groups = group_boxes(texts)

@@ -9,6 +9,7 @@ class Question(models.Model):
     create_date = models.DateTimeField()
     modify_date = models.DateTimeField(null=True, blank=True)
     voter = models.ManyToManyField(User, related_name='voter_question')  # 추천인 추가
+    image = models.ImageField(upload_to='user_images/', null=True, blank=True)
 
     def __str__(self):
         return self.subject
@@ -30,6 +31,19 @@ class Comment(models.Model):
     modify_date = models.DateTimeField(null=True, blank=True)
     question = models.ForeignKey(Question, null=True, blank=True, on_delete=models.CASCADE)
     answer = models.ForeignKey(Answer, null=True, blank=True, on_delete=models.CASCADE)
+
+
+class UserImage(models.Model):
+    image = models.ImageField(upload_to='user_images/')
+class Post(models.Model):
+    postname = models.CharField(max_length=50)
+    # 게시글 Post에 이미지 추가
+    mainphoto = models.ImageField(blank=True, null=True)
+    contents = models.TextField()
+
+    # postname이 Post object 대신 나오기
+    def __str__(self):
+        return self.postname
 
 class ImageModel(models.Model):
         image = models.TextField()
