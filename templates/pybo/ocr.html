@@ -15,16 +15,20 @@
 <img src="../../media/{{ image }}" width="300px">
     <p style="color:blue;">{{image}}</p>
 <!--    <div>{{ texts }}</div>-->
+        <button onclick="shuffle();" id="shuffle" name="shuffle" class="btn btn-primary">단어섞기</button>
         {% if texts %}
         {% for item in texts %}
             <div>
-                {{ forloop.counter }}
+                {{ forloop.counter }}.
                 {{ item }}
             </div>
         {% endfor %}
         {% else %}
             <p colspan="3">단어가 없습니다.</p>
         {% endif %}
+
+
+
 <!--    <img src="./pybo/테스트4.png">-->
     <div style="padding-top: 500px">테스트를 위한 공란</div><hr>
 <!--    <form method="post" enctype="multipart/form-data">-->
@@ -95,6 +99,13 @@ $('.image-upload-wrap').bind('dragover', function () {
 	$('.image-upload-wrap').bind('dragleave', function () {
 		$('.image-upload-wrap').removeClass('image-dropping');
 });
+
+
+
+document.getElementById("shuffle").onclick = function shuffle() {
+      alert("Hello World");
+    };
+
 
 </script>
 
