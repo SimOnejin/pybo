@@ -8,9 +8,10 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
- table{ border-collapse : collapse; }  /*이중선 제거*/
+ table{ border-collapse : collapse; max-width: 600px; }  /*이중선 제거*/
  th,td{
       width: 100px;
+
       height: 50px;
       text-align: center;
       border: 1px solid #000;
@@ -23,12 +24,14 @@
 </head>
 <body>
 <!--    <h2>hello world</h2>-->
-<div style="padding: 50px">
+<div style="padding: 5%; width: 100%">
 
-        <a href="{% url 'pybo:shuffle' %}" class="btn btn-primary">단어섞기</a>
+
         <table border="1px">
             <tr>
-                <th>번호</th><th>일본어</th><th>한국어</th>
+                <td colspan="3" style="border: none;"><a href="{% url 'pybo:shuffle' %}" style="width: 100%" class="btn btn-primary float-right">단어섞기</a></td>
+            <tr>
+                <th style="col-1">번호</th><th style="width: 45%">일본어</th><th style="width: 45%">한국어</th>
             </tr>
 
                 {% if texts %}
