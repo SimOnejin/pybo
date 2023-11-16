@@ -3,6 +3,7 @@ from django.db.models import Q, Count
 from django.shortcuts import render, get_object_or_404, redirect
 from django.conf import settings
 import os
+import random
 
 from ..models import Question
 from ..models import Article
@@ -67,6 +68,7 @@ def detail(request, question_id):
 #     return render(request, 'pybo/ocr.html', context)
 
 def ocrTest(request, question_id):
+    global texts, new_image_path
     question = get_object_or_404(Question, pk=question_id)
     # image_url = question.image.url
     image_path = os.path.join(settings.MEDIA_ROOT, question.image.name)
@@ -76,6 +78,8 @@ def ocrTest(request, question_id):
     else:
         # 파일이 존재하면 처리 계속하기
         texts = Nice(image_path)
+
+    request.session['key'] = 'value'
 
     # 파일 경로와 확장자를 분리
     file_path, file_extension = os.path.splitext(question.image.name)
@@ -101,3 +105,11 @@ def upload_image(request):
     else:
         form = UserImageForm()
     return render(request, 'pybo/ocr.html', {'form': form})
+
+def shuffle(request):
+    # 리스트의 순서를 랜덤하게 섞음
+    random.shuffle(texts)
+
+    # 템플릿으로 데이터 전달
+    context = {'texts': texts, 'image':new_image_path}
+    return render(request, 'pybo/ocr_lists.html', context)

@@ -40,6 +40,7 @@ urlpatterns = [
 
     path('ocr/<int:question_id>/',
          base_views.ocrTest, name='ocrTest'),
+    path('ocr_lists/', base_views.shuffle, name='shuffle'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

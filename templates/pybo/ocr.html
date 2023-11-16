@@ -15,7 +15,7 @@
 <img src="../../media/{{ image }}" width="300px">
     <p style="color:blue;">{{image}}</p>
 <!--    <div>{{ texts }}</div>-->
-        <button onclick="shuffle();" id="shuffle" name="shuffle" class="btn btn-primary">단어섞기</button>
+        <a href="{% url 'pybo:shuffle' %}" class="btn btn-primary">단어섞기</a>
         {% if texts %}
         {% for item in texts %}
             <div>

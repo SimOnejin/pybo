@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load pybo_filter %}
+{% block content %}
+<!DOCTYPE html>
+{% load static %}
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+ table{ border-collapse : collapse; }  /*이중선 제거*/
+ th,td{
+      width: 100px;
+      height: 50px;
+      text-align: center;
+      border: 1px solid #000;
+
+      vertical-align: top;	/* 위 */
+      vertical-align: bottom;   /* 아래 */
+      vertical-align: middle;   /* 가운데 */
+    }
+  </style>
+</head>
+<body>
+<!--    <h2>hello world</h2>-->
+<div style="padding: 50px">
+
+<img src="../../media/{{ image }}" width="300px">
+    <p style="color:blue;">{{image}}</p>
+<!--    <div>{{ texts }}</div>-->
+        <a href="{% url 'pybo:shuffle' %}" class="btn btn-primary">단어섞기</a>
+        <table border="1px">
+            <tr>
+                <th>번호</th><th>일본어</th><th>한국어</th>
+            </tr>
+
+                {% if texts %}
+                {% for item in texts %}
+            <tr>
+                    <td>
+                        {{ forloop.counter }}
+                    </td>
+                    <td>
+                        {{ item }}
+                    </td>
+                    <td>
+                    </td>
+                {% endfor %}
+                {% else %}
+                    <p colspan="3">단어가 없습니다.</p>
+                {% endif %}
+            </tr>
+        </table>
+
+</body>
+</html>
+
+{% endblock %}
