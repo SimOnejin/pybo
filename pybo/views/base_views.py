@@ -108,8 +108,25 @@ def upload_image(request):
 
 def shuffle(request):
     # 리스트의 순서를 랜덤하게 섞음
-    random.shuffle(texts)
-
+    # random.shuffle(texts)
+    random.shuffle(combined_list)
+    shuffled_texts, shuffled_trans = zip(*combined_list)
     # 템플릿으로 데이터 전달
-    context = {'texts': texts, 'image':new_image_path}
+    # context = {'texts': shuffled_texts, 'trans': shuffled_trans}
+    context = {'combined_list': combined_list}
     return render(request, 'pybo/ocr_lists.html', context)
+
+def translate(request):
+    from googletrans import Translator
+    translator = Translator()
+    global trans
+    trans = []
+    for i in texts:
+        result = translator.translate(i, dest='ko')
+        trans.append(result.text)
+
+    global combined_list
+    combined_list = list(zip(texts, trans))
+    context = {'combined_list': combined_list}
+    # print(result.text)
+    return render(request, 'pybo/trans.html', context)

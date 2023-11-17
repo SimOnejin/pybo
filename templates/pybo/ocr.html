@@ -13,11 +13,14 @@
 <div style="padding: 5%; width: 100%">
 
 <img src="../../media/{{ image }}" width="300px">
-    <p style="color:blue;">{{image}}</p>
+<!--    <p style="color:blue;">{{image}}</p>-->
 <!--    <div>{{ texts }}</div>-->
-        <a href="{% url 'pybo:shuffle' %}" class="btn btn-primary">단어섞기</a>
-    <form style="width: 300px; height: 300px; overflow:scroll; box-shadow: 5px 15px 10px;">
-    {% if texts %}
+    <h4>단어 수정하기</h4>
+        <a href="{% url 'pybo:translate' %}" class="btn btn-primary">Trans</a>
+        <a href="{% url 'pybo:shuffle' %}" class="btn btn-primary">Summit</a>
+    <form style="width: 300px; height: 300px; overflow:scroll; box-shadow: 5px 10px 15px gray; border-radius: 15px;">
+
+        {% if texts %}
     <table>
         {% for item in texts %}
         <tr>
