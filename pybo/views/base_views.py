@@ -18,6 +18,8 @@ def index(request):
     pybo 목록 출력
     """
     request.session.clear()
+    texts = []
+    combined_list = []
 
     # 입력 파라미터
     page = request.GET.get('page', '1')  # 페이지
@@ -138,7 +140,7 @@ def translate(request):
         trans.append(result.text)
 
     global combined_list
-    combined_list = []
+
     combined_list = list(zip(texts, trans))
     context = {'combined_list': combined_list}
     # print(result.text)
