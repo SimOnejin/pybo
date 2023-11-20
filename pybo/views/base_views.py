@@ -19,6 +19,8 @@ def index(request):
     try:
         request.session.modified = True  # 세션 삭제 가능하도록 등록
         del request.session['texts']  # 세션 삭제
+    except:
+        pass
 
     # 입력 파라미터
     page = request.GET.get('page', '1')  # 페이지
