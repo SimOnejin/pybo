@@ -128,8 +128,9 @@ def translate(request):
     global trans
     trans = []
     for i in texts:
-        request.session['result'] = translator.translate(i, dest='ko')
-        result = request.session['result']
+        # request.session['result'] = translator.translate(i, dest='ko')
+        # result = request.session['result']
+        result = translator.translate(i, dest='ko')
         trans.append(result.text)
 
     global combined_list
