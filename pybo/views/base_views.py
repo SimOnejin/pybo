@@ -125,6 +125,7 @@ def shuffle(request):
 
 def translate(request):
     # del request.session['combined_list']
+    global combined_list
     combined_list = []
     translator = Translator()
     global trans
@@ -137,7 +138,7 @@ def translate(request):
         result = translator.translate(i, dest='ko')
         trans.append(result.text)
 
-    global combined_list
+
     combined_list = list(zip(texts, trans))
     context = {'combined_list': combined_list}
     # print(result.text)
