@@ -73,6 +73,7 @@ def detail(request, question_id):
 def ocrTest(request, question_id):
     # request.session['texts'] = []
     global texts, new_image_path
+    texts = []
     question = get_object_or_404(Question, pk=question_id)
     # image_url = question.image.url
     image_path = os.path.join(settings.MEDIA_ROOT, question.image.name)
