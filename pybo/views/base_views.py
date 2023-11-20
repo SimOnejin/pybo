@@ -87,7 +87,8 @@ def ocrTest(request, question_id):
         # 파일이 존재하면 처리 계속하기
         request.session['texts'] = Nice(image_path)
         # texts = Nice(image_path)
-        texts = request.session['texts']
+        # texts = request.session['texts']
+        texts = request.session.get('texts', None)
 
     request.session['key'] = 'value'
 
@@ -131,9 +132,11 @@ def translate(request):
     global trans
     trans = []
     for i in texts:
-        # request.session['result'] = translator.translate(i, dest='ko')
+        request.session['result'] = translator.translate(i, dest='ko')
         # result = request.session['result']
-        result = translator.translate(i, dest='ko')
+        result = request.session.get('result', None)
+
+        # result = translator.translate(i, dest='ko')
         trans.append(result.text)
 
     global combined_list
