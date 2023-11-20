@@ -16,6 +16,8 @@ def index(request):
     """
     pybo 목록 출력
     """
+    request.session.modified = True  # 세션 삭제 가능하도록 등록
+    del request.session['texts']  # 세션 삭제
 
     # 입력 파라미터
     page = request.GET.get('page', '1')  # 페이지
@@ -69,7 +71,7 @@ def detail(request, question_id):
 #     return render(request, 'pybo/ocr.html', context)
 
 def ocrTest(request, question_id):
-    # request.session['texts'] = []
+    request.session['texts'] = []
     global texts, new_image_path
     question = get_object_or_404(Question, pk=question_id)
     # image_url = question.image.url
@@ -79,9 +81,9 @@ def ocrTest(request, question_id):
         pass
     else:
         # 파일이 존재하면 처리 계속하기
-        # request.session['texts'] = Nice(image_path)
-        texts = Nice(image_path)
-        # texts = request.session['texts']
+        request.session['texts'] = Nice(image_path)
+        # texts = Nice(image_path)
+        texts = request.session['texts']
 
     request.session['key'] = 'value'
 
@@ -126,9 +128,9 @@ def translate(request):
     global trans
     trans = []
     for i in texts:
-        # request.session['result'] = translator.translate(i, dest='ko')
-        # result = request.session['result']
-        result = translator.translate(i, dest='ko')
+        request.session['result'] = translator.translate(i, dest='ko')
+        result = request.session['result']
+        # result = translator.translate(i, dest='ko')
         trans.append(result.text)
 
     global combined_list
