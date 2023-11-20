@@ -127,9 +127,6 @@ def shuffle(request):
     return render(request, 'pybo/ocr_lists.html', context)
 
 def translate(request):
-    # 예외 처리: texts가 없거나 비어있을 때 빈 리스트 반환
-    texts = request.GET.getlist('texts', [])
-
     translator = Translator()
     global trans
     trans = []
