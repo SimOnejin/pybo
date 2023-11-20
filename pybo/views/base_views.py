@@ -75,8 +75,6 @@ def detail(request, question_id):
 #     return render(request, 'pybo/ocr.html', context)
 
 def ocrTest(request, question_id):
-    if not request.session['texts'] == []:
-        request.session['texts'] = []
     # request.session['texts'] = []
     global texts, new_image_path
     question = get_object_or_404(Question, pk=question_id)
