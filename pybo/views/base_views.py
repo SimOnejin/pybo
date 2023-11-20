@@ -124,15 +124,17 @@ def shuffle(request):
     return render(request, 'pybo/ocr_lists.html', context)
 
 def translate(request):
+    # del request.session['combined_list']
+    combined_list = []
     translator = Translator()
     global trans
     trans = []
     for i in texts:
-        request.session['result'] = translator.translate(i, dest='ko')
+        # request.session['result'] = translator.translate(i, dest='ko')
         # result = request.session['result']
-        result = request.session.get('result', None)
+        # result = request.session.get('result', None)
 
-        # result = translator.translate(i, dest='ko')
+        result = translator.translate(i, dest='ko')
         trans.append(result.text)
 
     global combined_list
