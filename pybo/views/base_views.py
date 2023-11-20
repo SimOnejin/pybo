@@ -4,6 +4,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.conf import settings
 import os
 import random
+from googletrans import Translator
 
 from ..models import Question
 from ..models import Article
@@ -126,15 +127,19 @@ def shuffle(request):
     return render(request, 'pybo/ocr_lists.html', context)
 
 def translate(request):
-    from googletrans import Translator
+    # 예외 처리: texts가 없거나 비어있을 때 빈 리스트 반환
+    texts = request.GET.getlist('texts', [])
+
     translator = Translator()
     global trans
     trans = []
     for i in texts:
-        request.session['result'] = translator.translate(i, dest='ko')
-        result = request.session['result']
+        # request.session['result'] = translator.translate(i, dest='ko')
+        # result = request.session['result']
         # result = translator.translate(i, dest='ko')
-        trans.append(result.text)
+        # trans.append(result.text)
+        translation_result = translator.translate(i, dest='ko')
+        trans.append(translation_result.text)
 
     global combined_list
     combined_list = list(zip(texts, trans))
