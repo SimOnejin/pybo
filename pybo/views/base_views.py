@@ -75,7 +75,7 @@ def detail(request, question_id):
 #     return render(request, 'pybo/ocr.html', context)
 
 def ocrTest(request, question_id):
-    request.session['texts'] = []
+    # request.session['texts'] = []
     global texts, new_image_path
     question = get_object_or_404(Question, pk=question_id)
     # image_url = question.image.url
@@ -85,9 +85,9 @@ def ocrTest(request, question_id):
         pass
     else:
         # 파일이 존재하면 처리 계속하기
-        request.session['texts'] = Nice(image_path)
-        # texts = Nice(image_path)
-        texts = request.session['texts']
+        # request.session['texts'] = Nice(image_path)
+        texts = Nice(image_path)
+        # texts = request.session['texts']
 
     request.session['key'] = 'value'
 
