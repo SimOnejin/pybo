@@ -81,9 +81,9 @@ def ocrTest(request, question_id):
         pass
     else:
         # 파일이 존재하면 처리 계속하기
-        request.session['texts'] = Nice(image_path)
-        # texts = Nice(image_path)
-        texts = request.session['texts']
+        # request.session['texts'] = Nice(image_path)
+        texts = Nice(image_path)
+        # texts = request.session['texts']
 
     request.session['key'] = 'value'
 
