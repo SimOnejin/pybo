@@ -137,6 +137,7 @@ def translate(request):
         trans.append(result.text)
 
     global combined_list
+    combined_list = []
     combined_list = list(zip(texts, trans))
     context = {'combined_list': combined_list}
     # print(result.text)
