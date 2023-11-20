@@ -136,10 +136,8 @@ def translate(request):
     for i in texts:
         # request.session['result'] = translator.translate(i, dest='ko')
         # result = request.session['result']
-        # result = translator.translate(i, dest='ko')
-        # trans.append(result.text)
-        translation_result = translator.translate(i, dest='ko')
-        trans.append(translation_result.text)
+        result = translator.translate(i, dest='ko')
+        trans.append(result.text)
 
     global combined_list
     combined_list = list(zip(texts, trans))
