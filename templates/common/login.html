@@ -19,9 +19,9 @@
                    value="{{ form.password.value|default_if_none:'' }}">
         </div>
 
-        <div>
-            <button type="submit" class="btn btn-primary" style="20px">로그인</button>
-            <a href="{% url 'common:signup' %}" class="btn btn-secondary" style="20px">회원가입</a>
+        <div class="center">
+            <button type="submit" class="btn btn-primary" style="margin-right:5%">로그인</button>
+            <a href="{% url 'common:signup' %}" class="btn btn-secondary">회원가입</a>
         </div>
     </form>
 </div>
