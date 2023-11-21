@@ -8,11 +8,6 @@
         <div class="mb-3">
             <div class="col-4">
                 <h4>로그인</h4>
-                <div class="col-8 text-right">
-                    <span>
-                        또는 <a href="{% url 'common:signup' %}">계정을 만드세요</a>
-                    </span>
-                </div>
             </div>
             <label for="username">사용자ID</label>
             <input type="text" class="form-control" name="username" id="username"
@@ -23,7 +18,15 @@
             <input type="password" class="form-control" name="password" id="password"
                    value="{{ form.password.value|default_if_none:'' }}">
         </div>
-        <button type="submit" class="btn btn-primary">로그인</button>
+
+        <div class="col-8 text-right">
+            <button type="submit" class="btn btn-primary">로그인</button>
+            <div class="text-right">
+                <span>
+                    또는 <a href="{% url 'common:signup' %}">계정을 만드세요</a>
+                </span>
+            </div>
+        </div>
     </form>
 </div>
 {% endblock %}
