@@ -35,20 +35,20 @@
         <form style="width: 300px; height: 300px; overflow:scroll; box-shadow: 5px 10px 15px gray; border-radius: 15px;">
             <div class="col text-center">
                 {% if texts %}
-                    <table>
-                {% for item in texts %}
-                <tr class="justify-content-center justify-content-middle">
-                    <td>
-                        {{ forloop.counter }}.
-                        <textarea style="height: 1.7em;; width: 100px; resize: none;"/>{{ item }}</textarea>
-                    </td>
-                </tr>
-                {% endfor %}
-                </table>
+                    <table style="margin-left: auto; margin-right: auto;">
+                        {% for item in texts %}
+                        <tr>
+                            <td>
+                                {{ forloop.counter }}.
+                                <textarea style="height: 1.7em;; width: 100px; resize: none;"/>{{ item }}</textarea>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                {% else %}
+                    <p colspan="3">단어가 없습니다.</p>
+                {% endif %}
             </div>
-            {% else %}
-                <p colspan="3">단어가 없습니다.</p>
-            {% endif %}
         </form>
     </div>
 
