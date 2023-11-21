@@ -38,8 +38,10 @@
                     <table style="margin-left: auto; margin-right: auto;">
                         {% for item in texts %}
                         <tr>
-                            <td>
+                            <td width="10%">
                                 {{ forloop.counter }}.
+                            </td>
+                            <td width="70%">
                                 <textarea style="height: 1.7em;; width: 100px; resize: none;"/>{{ item }}</textarea>
                             </td>
                         </tr>
