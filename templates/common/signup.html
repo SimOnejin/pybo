@@ -5,6 +5,9 @@
         {% csrf_token %}
         {% include "form_errors.html" %}
         <div class="mb-3" style="margin-top:4%;">
+            <div class="col-4" style="margin-left:-4%; margin-top:7%; margin-bottom:10%">
+                <h4>회원가입</h4>
+            </div>
             <label for="username">사용자 이름</label>
             <input type="text" class="form-control" name="username" id="username"
                    value="{{ form.username.value|default_if_none:'' }}">
