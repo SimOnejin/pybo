@@ -17,30 +17,29 @@
     <div class="col justify-content-left">
         <p style="color:blue;">{{image}}</p>
     </div>
-</div>
-<!--    <div>{{ texts }}</div>-->
-    <h4>단어 수정하기</h4>
+
+    <div class="col justify-content-left">
+        <h4>단어 수정하기</h4>
         <a href="{% url 'pybo:translate' %}" class="btn btn-primary">Trans</a>
         <a href="{% url 'pybo:shuffle' %}" class="btn btn-primary">Summit</a>
-    <form style="width: 300px; height: 300px; overflow:scroll; box-shadow: 5px 10px 15px gray; border-radius: 15px;">
-
-        {% if texts %}
-    <table>
-        {% for item in texts %}
-        <tr>
-            <td>
-                {{ forloop.counter }}.
-                <textarea style="height: 1.7em;; width: 100px; resize: none;"/>{{ item }}</textarea>
-            </td>
-        </tr>
-        {% endfor %}
-    </table>
-
-        {% else %}
-            <p colspan="3">단어가 없습니다.</p>
-        {% endif %}
-    </form>
-
+        <form style="width: 300px; height: 300px; overflow:scroll; box-shadow: 5px 10px 15px gray; border-radius: 15px;">
+            {% if texts %}
+            <table>
+            {% for item in texts %}
+            <tr>
+                <td>
+                    {{ forloop.counter }}.
+                    <textarea style="height: 1.7em;; width: 100px; resize: none;"/>{{ item }}</textarea>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+            {% else %}
+                <p colspan="3">단어가 없습니다.</p>
+            {% endif %}
+        </form>
+    </div>
+</div>
 </body>
 </html>
 
