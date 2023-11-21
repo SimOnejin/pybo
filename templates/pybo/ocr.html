@@ -42,7 +42,9 @@
                             {{ forloop.counter }}.
                         </td>
                         <td style="width: 80%; border: 1px solid #ddd; text-align: center; vertical-align: middle;">
-                            <textarea style="height: 1.7em; width: 100%; resize: none;">{{ item }}</textarea>
+                            <textarea style="height: 1.7em; width: 100%; resize: none; display: block; margin: 0 auto;">
+                                {{ item }}
+                            </textarea>
                         </td>
                     </tr>
                     {% endfor %}
