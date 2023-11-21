@@ -19,9 +19,6 @@
         <div class="card-body">
             <div class="card-text" style="white-space: pre-line;">{{ question.content|mark }}</div>
 
-
-
-
             <!--이미지 불러오기-->
             <img src = "../media/{{ question.image }}" width="300px">
             {% if texts %}
@@ -32,9 +29,6 @@
                         </div>
                     {% endfor %}
                     {% endif %}
-
-
-
 
             <div class="d-flex justify-content-end">
                 {% if question.modify_date %}
