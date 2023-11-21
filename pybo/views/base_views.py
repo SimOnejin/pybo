@@ -144,3 +144,4 @@ def translate(request):
 
 def session_reset(request):
     request.session.clear()
+    return render(request, 'pybo/question_list.html')
