@@ -28,8 +28,10 @@
 {% endblock %}
 {% block script %}
 <script type='text/javascript'>
-document.getElementById('signupButton').onclick = function() {
-        window.location.href = '{% url 'common:signup' %}';
+    window.onload = function() {
+        document.getElementById('signupButton').onclick = function() {
+            window.location.href = '{% url 'common:signup' %}';
+        };
     };
 </script>
 {% endblock %}
