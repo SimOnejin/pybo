@@ -116,11 +116,12 @@ def shuffle(request):
     # 리스트의 순서를 랜덤하게 섞음
     # random.shuffle(texts)
     request.session.clear()
+    texts = []
     random.shuffle(combined_list)
     shuffled_texts, shuffled_trans = zip(*combined_list)
     # 템플릿으로 데이터 전달
     # context = {'texts': shuffled_texts, 'trans': shuffled_trans}
-    context = {'combined_list': combined_list}
+    context = {'combined_list': combined_list, 'texts': texts}
     return render(request, 'pybo/ocr_lists.html', context)
 
 def translate(request):
