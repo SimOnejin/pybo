@@ -14,7 +14,13 @@
   </style>
 <div class="container my-3">
     <div class="row justify-content-between my-3">
-        <div class="col-2">
+        <div class="col-4 input-group" style="width:70%">
+            <input type="text" id="search_kw" class="form-control" value="{{ kw|default_if_none:'' }}">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button" id="btn_search">찾기</button>
+                </div>
+        </div>
+        <div class="col-2" style="width:30%">
             <form action="{% url 'index' %}" method="get" id="sort_by" style="margin-bottom:5%">
                 <select class="form-control so text-center" id="sort_by" name="sort_by">
                     <option value="recent" {% if sort_by == 'recent' %}selected{% endif %}>최신순</option>
@@ -22,12 +28,6 @@
                     <option value="popular" {% if sort_by == 'popular' %}selected{% endif %}>인기순</option>
                 </select>
             </form>
-        </div>
-        <div class="col-4 input-group">
-            <input type="text" id="search_kw" class="form-control" value="{{ kw|default_if_none:'' }}">
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button" id="btn_search">찾기</button>
-                </div>
         </div>
     </div>
     <table class="table">
