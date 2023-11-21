@@ -15,8 +15,8 @@
 <div class="container my-3">
     <div class="row justify-content-between my-3">
         <div class="col-3">
-            <form action="{% url 'index' %}" method="get" id="sort_by">
-                <select class="form-control so text-center" id="sort_by" name="sort_by">
+            <form class="text-center" action="{% url 'index' %}" method="get" id="sort_by">
+                <select class="form-control so" id="sort_by" name="sort_by">
                     <option value="recent" {% if sort_by == 'recent' %}selected{% endif %}>최신순</option>
                     <option value="recommend" {% if sort_by == 'recommend' %}selected{% endif %}>추천순</option>
                     <option value="popular" {% if sort_by == 'popular' %}selected{% endif %}>인기순</option>
