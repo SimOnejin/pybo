@@ -17,10 +17,6 @@ def index(request):
     """
     pybo 목록 출력
     """
-    request.session.clear()
-    texts = []
-    combined_list = []
-
     # 입력 파라미터
     page = request.GET.get('page', '1')  # 페이지
     kw = request.GET.get('kw', '')  # 검색어
@@ -145,3 +141,6 @@ def translate(request):
     context = {'combined_list': combined_list}
     # print(result.text)
     return render(request, 'pybo/trans.html', context)
+
+def session_reset(request):
+    request.session.clear()
