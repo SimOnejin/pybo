@@ -1,18 +1,21 @@
 {% extends 'base.html' %}
 {% load pybo_filter %}
 {% block content %}
+
 <div class="container my-3">
+
     <!-- message 표시 -->
     {% if messages %}
-    <div class="alert alert-danger my-3" role="alert">
-        {% for message in messages %}
-        <strong>{{ message.tags }}</strong>
-        <ul>
-            <li>{{ message.message }}</li>
-        </ul>
-        {% endfor %}
-    </div>
+        <div class="alert alert-danger my-3" role="alert">
+            {% for message in messages %}
+            <strong>{{ message.tags }}</strong>
+            <ul>
+                <li>{{ message.message }}</li>
+            </ul>
+            {% endfor %}
+        </div>
     {% endif %}
+
     <!-- 질문 -->
     <h2 class="border-bottom py-2">{{ question.subject }}</h2>
     <div class="card my-3">
@@ -20,20 +23,22 @@
             <div class="card-text" style="white-space: pre-line;">{{ question.content|mark }}</div>
 
             <!--이미지 불러오기-->
-            <img src = "../media/{{ question.image }}" width="300px">
+            <img src = "../media/{{ question.image }}" style="width:300px; margin-left:auto; margin-right:auto;">
             {% if texts %}
-                    {% for item in texts %}
-                        <div>
-                            {{ forloop.counter }}
-                            {{ item }}
-                        </div>
-                    {% endfor %}
-                    {% endif %}
+                {% for item in texts %}
+                    <div>
+                        {{ forloop.counter }}
+                        {{ item }}
+                    </div>
+                {% endfor %}
+            {% endif %}
 
             <div class="d-flex justify-content-end">
                 {% if question.modify_date %}
                 <div class="badge bg-light text-dark p-2 text-start mx-3">
-                    <div class="mb-2">modified at</div>
+                    <div class="mb-2">
+                        modified at
+                    </div>
                     <div>{{ question.modify_date }}</div>
                 </div>
                 {% endif %}
@@ -42,34 +47,26 @@
                     <div>{{ question.create_date }}</div>
                 </div>
             </div>
+
             <div class="my-3">
-
-
-
-
-
-            <form method="post" action="{% url 'pybo:ocrTest' question.id %}">
-                {% csrf_token %}
-                <input type="submit" class="btn btn-sm btn-outline-secondary" value="이미지 단어 추출하기">
-            </form>
-
-
-
-
+                <form method="post" action="{% url 'pybo:ocrTest' question.id %}">
+                    {% csrf_token %}
+                    <input type="submit" class="btn btn-sm btn-outline-secondary" value="이미지 단어 추출하기">
+                </form>
 
                 <a href="javascript:void(0)" data-uri="{% url 'pybo:question_vote' question.id  %}"
-               class="recommend btn btn-sm btn-outline-secondary"> 추천
-                <span class="badge rounded-pill bg-success">{{question.voter.count}}</span>
+                   class="recommend btn btn-sm btn-outline-secondary"> 추천
+                    <span class="badge rounded-pill bg-success">{{question.voter.count}}</span>
                 </a>
+
                 {% if request.user == question.author %}
-                <a href="{% url 'pybo:question_modify' question.id  %}"
-                   class="btn btn-sm btn-outline-secondary">수정</a>
-                <a href="#" class="delete btn btn-sm btn-outline-secondary"
-                   data-uri="{% url 'pybo:question_delete' question.id  %}">삭제</a>
+                    <a href="{% url 'pybo:question_modify' question.id  %}" class="btn btn-sm btn-outline-secondary">수정</a>
+                    <a href="#" class="delete btn btn-sm btn-outline-secondary" data-uri="{% url 'pybo:question_delete' question.id  %}">삭제</a>
                 {% endif %}
             </div>
         </div>
     </div>
+
     <!-- 답변 -->
     <h5 class="border-bottom my-3 py-2">{{question.answer_set.count}}개의 답변이 있습니다.</h5>
     {% for answer in question.answer_set.all %}
