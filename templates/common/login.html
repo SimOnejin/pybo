@@ -19,9 +19,11 @@
                    value="{{ form.password.value|default_if_none:'' }}">
         </div>
 
-        <div class="col-8 text-right">
-            <button type="submit" class="btn btn-primary">로그인</button>
-            <div class="text-right">
+        <div>
+            <div class="position-absolute top-0 start-0">
+                <button type="submit" class="btn btn-primary">로그인</button>
+            </div>
+            <div class="position-absolute top-0 end-0">
                 <span>
                     또는 <a href="{% url 'common:signup' %}">계정을 만드세요</a>
                 </span>
