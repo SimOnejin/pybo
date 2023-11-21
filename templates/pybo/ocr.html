@@ -10,10 +10,14 @@
 </head>
 <body>
 <!--    <h2>hello world</h2>-->
-<div style="padding: 5%; width: 100%">
-
-<img src="../../media/{{ image }}" width="300px">
-    <p style="color:blue;">{{image}}</p>
+<div class="mb-3" style="padding: 5%; width: 100%">
+    <div class="col justify-content-center">
+        <img src="../../media/{{ image }}" width="300px">
+    </div>
+    <div class="col justify-content-left">
+        <p style="color:blue;">{{image}}</p>
+    </div>
+</div>
 <!--    <div>{{ texts }}</div>-->
     <h4>단어 수정하기</h4>
         <a href="{% url 'pybo:translate' %}" class="btn btn-primary">Trans</a>
