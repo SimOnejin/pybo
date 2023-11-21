@@ -42,7 +42,7 @@ urlpatterns = [
          base_views.ocrTest, name='ocrTest'),
     path('ocr_lists/', base_views.shuffle, name='shuffle'),
     path('trans/', base_views.translate, name='translate'),
-    path('', base_views.session_reset, name='session_reset'),
+    path('t', base_views.session_reset, name='session_reset'),
 
 ]
 
