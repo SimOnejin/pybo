@@ -19,12 +19,12 @@
             <input type="password" class="form-control" name="password2" id="password2"
                    value="{{ form.password2.value|default_if_none:'' }}">
         </div>
-        <div class="mb-3" style="margin-top:10%; margin-bottom:14%;">
+        <div class="mb-3" style="margin-top:10%;">
             <label for="email">이메일</label>
             <input type="text" class="form-control" name="email" id="email"
                    value="{{ form.email.value|default_if_none:'' }}">
         </div>
-        <button type="submit" class="btn btn-primary">생성하기</button>
+        <button type="submit" class="btn btn-primary margin-top:10%;">생성하기</button>
     </form>
 </div>
 {% endblock %}
