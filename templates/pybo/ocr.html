@@ -29,23 +29,29 @@
             <a href="{% url 'pybo:translate' %}" class="btn btn-outline-primary" style="margin-right:5%; width:25%;">Trans</a>
             <a href="{% url 'pybo:shuffle' %}" class="btn btn-outline-primary" style="width:25%;">Summit</a>
         </div>
+    </div>
+
+    <div class="row justify-content-center">
         <form style="width: 300px; height: 300px; overflow:scroll; box-shadow: 5px 10px 15px gray; border-radius: 15px;">
-            {% if texts %}
-            <table>
-            {% for item in texts %}
-            <tr>
-                <td>
-                    {{ forloop.counter }}.
-                    <textarea style="height: 1.7em;; width: 100px; resize: none;"/>{{ item }}</textarea>
-                </td>
-            </tr>
-            {% endfor %}
-        </table>
+            <div class="col text-center">
+                {% if texts %}
+                    <table>
+                {% for item in texts %}
+                <tr>
+                    <td>
+                        {{ forloop.counter }}.
+                        <textarea style="height: 1.7em;; width: 100px; resize: none;"/>{{ item }}</textarea>
+                    </td>
+                </tr>
+                {% endfor %}
+                </table>
+            </div>
             {% else %}
                 <p colspan="3">단어가 없습니다.</p>
             {% endif %}
         </form>
     </div>
+
 </div>
 </body>
 </html>
