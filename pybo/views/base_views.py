@@ -80,9 +80,9 @@ def ocrTest(request, question_id):
         pass
     else:
         # 파일이 존재하면 처리 계속하기
-        # request.session['texts'] = Nice(image_path)
-        texts = Nice(image_path)
-        # texts = request.session['texts']
+        request.session['texts'] = Nice(image_path)
+        # texts = Nice(image_path)
+        texts = request.session['texts']
         # texts = request.session.get('texts', None)
 
     request.session['key'] = 'value'
@@ -115,6 +115,7 @@ def upload_image(request):
 def shuffle(request):
     # 리스트의 순서를 랜덤하게 섞음
     # random.shuffle(texts)
+    request.session.clear()
     random.shuffle(combined_list)
     shuffled_texts, shuffled_trans = zip(*combined_list)
     # 템플릿으로 데이터 전달
