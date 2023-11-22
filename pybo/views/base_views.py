@@ -235,7 +235,7 @@ def voca_create(request):
         form = VocaForm(request.POST)
         if form.is_valid():
             voca = form.save(commit=False)
-            voca.author = request.user  # author 속성에 로그인 계정 저장jj
+            voca.author = request.user  # author 속성에 로그인 계정 저장jj.
             voca.create_date = timezone.now()
             voca.image = request.FILES.get('image',None) #request의 FILES의 image 속성 가져온다
             voca.save()

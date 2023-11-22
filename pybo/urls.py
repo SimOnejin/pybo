@@ -16,7 +16,7 @@ urlpatterns = [
          base_views.detail, name='detail'),
 
     path('voca/create/',
-         base_views.voca_create, name='voca_create'),
+         base_views.voca_create, name='voca_create'),#..
     path('voca/list/',
          base_views.voca_list, name='voca_list'),
     path('voca/detail/<int:voca_id>/',
