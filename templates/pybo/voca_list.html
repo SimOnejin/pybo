@@ -2,7 +2,7 @@
 {% block content %}
 <div class="container">
     <h5 class="my-3 border-bottom pb-2">단어 등록 목록</h5>
-    <table class="table table-striped rounded">
+    <table class="table table-striped">
         <thead>
         <tr class="text-center table-primary">
             <th style="width:11%">번호</th>
@@ -21,7 +21,7 @@
             </td>
 
             <td class="text-left">
-                <a href="{% url 'pybo:voca_detail' voca.id %}" class="text-decoration-none text-color-dark">{{ voca.subject }}</a>
+                <a href="{% url 'pybo:voca_detail' voca.id %}" class="text-decoration-none text-dark">{{ voca.subject }}</a>
             </td>
             <td>{{ voca.author.username }}</td>  <!-- 글쓴이 추가 -->
             <td>{{ voca.create_date|date:"m / d"}}</td>
