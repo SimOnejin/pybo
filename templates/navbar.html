@@ -34,17 +34,17 @@
                 </li>
                 <li>
                     {% if not user.is_authenticated %}
-                    <a class="nav-link" href="{% url 'common:signup' %}">회원가입</a>
+                    <a class="nav-link font" href="{% url 'common:signup' %}">회원가입</a>
                     {% endif %}
                 </li>
                 <li>
-                    <a class="nav-link" href="{% url 'pybo:voca_create' %}">단어 스캔하기</a>
+                    <a class="nav-link font" href="{% url 'pybo:voca_create' %}">단어 스캔하기</a>
                 </li>
                 <li>
-                    <a class="nav-link" href="{% url 'pybo:voca_list' %}">나만의 단어장</a>
+                    <a class="nav-link font" href="{% url 'pybo:voca_list' %}">나만의 단어장</a>
                 </li>
                 <li>
-                    <a class="nav-link" href="{% url 'pybo:vocaTest' %}">단어 테스트하기</a>
+                    <a class="nav-link font" href="{% url 'pybo:vocaTest' %}">단어 테스트하기</a>
                 </li>
             </ul>
         </div>
