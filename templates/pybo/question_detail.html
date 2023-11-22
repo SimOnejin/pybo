@@ -35,7 +35,7 @@
 
             <div class="container">
                 <!--수정날짜-->
-                <div class="col d-flex justify-content-end" style="width:50%;">
+                <div class="col justify-content-end" style="width:50%;">
                     {% if question.modify_date %}
                         <div class="badge bg-light text-dark p-2 text-start mx-3">
                             <div class="mb-2">
@@ -51,7 +51,7 @@
                 </div>
 
                 <!--추출하기, 추천 버튼-->
-                <div class="col my-3 d-flex justify-content-start" style="width:50%;">
+                <div class="col my-3 justify-content-start" style="width:50%;">
                     <form method="post" action="{% url 'pybo:ocrTest' question.id %}">
                         {% csrf_token %}
                         <input type="submit" class="btn btn-sm btn-outline-secondary" value="이미지 단어 추출하기">
