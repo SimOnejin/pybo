@@ -4,14 +4,14 @@
     <h5 class="my-3 border-bottom pb-2">단어 등록 목록</h5>
     <table class="table table-striped">
         <thead>
-        <tr class="text-center thead-primary">
+        <tr class="text-center">
             <th style="width:11%">번호</th>
             <th class="col-4">제목</th>
             <th class="col-2">글쓴이</th>
             <th class="col-2">작성일</th>
         </tr>
         </thead>
-        <tbody>
+        <tbody class="table-group-divider">
         {% if voca_list %}
         {% for voca in voca_list %}
         <tr class="text-center">
