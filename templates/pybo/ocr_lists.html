@@ -20,6 +20,9 @@
       vertical-align: bottom;   /* 아래 */
       vertical-align: middle;   /* 가운데 */
     }
+    .hidden {
+      display: none;
+    }
   </style>
 </head>
 <body>
@@ -33,10 +36,21 @@
 <!--                <p colspan="3">번역된 단어가 없습니다.</p>-->
 <!--            {% endif %}-->
 <!--        </div>-->
-    <div style="margin-bottom:15%;">
+    <div style="margin-bottom:5%;">
         <a href="{% url 'pybo:shuffle' %}" style="width: 100%" class="btn btn-outline-primary float-right">단어섞기</a>
     </div>
+
     <table border="1px">
+        <thead>
+        <tr>
+            <label>
+            <td colspan="3">
+                <input type="checkbox" id="toggleCheckbox_ja" checked> 일본어 보이기
+                <input type="checkbox" id="toggleCheckbox_ko" style="margin-left: 5%"> 한국어 보이기
+            </td>
+            </label>
+        </tr>
+        </thead>
         <thead>
             <tr>
                 <th style="col-1">번호</th>
@@ -52,10 +66,10 @@
                     {{ forloop.counter }}
                 </td>
                 <td>
-                    {{text}}
+                    <div class="elementToToggle_ja">{{text}}</div>
                 </td>
                 <td>
-                    {{ translation }}
+                    <div class="elementToToggle_ko hidden">{{ translation }}</div>
                 </td>
             </tr>
         </tbody>
@@ -63,6 +77,37 @@
         {% endif %}
     </table>
 </body>
+<script>
+    // 체크박스 요소와 토글할 요소들을 가져옵니다.
+    var checkbox_ja = document.getElementById('toggleCheckbox_ja');
+    var elementToToggle_ja = document.querySelectorAll('.elementToToggle_ja');
+
+    var checkbox_ko = document.getElementById('toggleCheckbox_ko');
+    var elementToToggle_ko = document.querySelectorAll('.elementToToggle_ko');
+
+    // 체크박스의 상태가 변경될 때 호출되는 함수를 정의합니다.
+    function toggleElementVisibility(checkbox, elementsToToggle) {
+        // 체크박스가 체크되었는지 확인합니다.
+        var visibility = checkbox.checked ? 'block' : 'none';
+
+        // 모든 요소에 대해 가시성을 설정합니다.
+        elementsToToggle.forEach(function(element) {
+            element.style.display = visibility;
+        });
+    }
+
+    // 각각의 체크박스에 대한 이벤트 리스너를 등록합니다.
+    checkbox_ja.addEventListener('change', function() {
+        toggleElementVisibility(checkbox_ja, elementToToggle_ja);
+    });
+    checkbox_ko.addEventListener('change', function() {
+        toggleElementVisibility(checkbox_ko, elementToToggle_ko);
+    });
+
+    // 페이지 로드 시 초기 상태를 설정합니다.
+    toggleElementVisibility(checkbox_ja, elementsToToggleJapan);
+    toggleElementVisibility(checkbox_ko, elementsToToggleKorean);
+</script>
 </html>
 
 {% endblock %}
