@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>단어 시험</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        #question {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        #correct {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .option {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    {% if vocaList %}
+        <h1>단어 시험</h1>
+
+        <div id="question">
+            <p>다음 중 단어의 뜻으로 올바른 것은?</p>
+            <strong>Word:</strong> <span id="word">Example</span>
+        </div>
+
+        <button id="answerBtnA" class="option" onclick="checkAnswer('answerBtnA')">옵션 A</button>
+        <button id="answerBtnB" class="option" onclick="checkAnswer('answerBtnB')">옵션 B</button>
+        <button id="answerBtnC" class="option" onclick="checkAnswer('answerBtnC')">옵션 C</button>
+        <button id="answerBtnD" class="option" onclick="checkAnswer('answerBtnD')">옵션 D</button>
+
+        <div>
+            <strong id="correct"></strong>
+        </div>
+
+<!--        <a class="option" href="{% url 'pybo:index' %}">Home</a>-->
+
+        <script>
+            var vocaList = [];
+            var randomPosition = [];
+            var randAnswer = [];
+            var questionCount = 0;
+            var correctCount = 0;
+
+
+            {% for i in vocaList %}
+                vocaList.push({'{{ i.voca_japan }}' : '{{ i.voca_korea }}'});
+            {% endfor %}
+
+            {% for i in randomPosition %}
+                var temp = [];
+                {% for j in i %}
+                    temp.push({{ j }});
+                {% endfor %}
+                randomPosition.push(temp);
+            {% endfor %}
+
+            {% for i in randAnswer %}
+                var temp = [];
+                {% for j in i %}
+                    temp.push('{{ j }}');
+                {% endfor %}
+                randAnswer.push(temp);
+            {% endfor %}
+
+            console.log(vocaList);
+            console.log(randomPosition);
+            console.log(randAnswer);
+            document.getElementById('word').innerHTML = Object.keys(vocaList[questionCount]);
+            document.getElementById('answerBtnA').innerHTML = randAnswer[questionCount][randomPosition[questionCount][0]];
+            document.getElementById('answerBtnB').innerHTML = randAnswer[questionCount][randomPosition[questionCount][1]];
+            document.getElementById('answerBtnC').innerHTML = randAnswer[questionCount][randomPosition[questionCount][2]];
+            document.getElementById('answerBtnD').innerHTML = randAnswer[questionCount][randomPosition[questionCount][3]];
+            function checkAnswer(selectedOption) {
+                if(vocaList[questionCount][document.getElementById('word').innerHTML] == document.getElementById(selectedOption).innerHTML){
+                    if(questionCount != vocaList.length-1){
+                        correctCount++;
+                        questionCount++;
+                        document.getElementById('word').innerHTML = Object.keys(vocaList[questionCount]);
+                        document.getElementById('answerBtnA').innerHTML = randAnswer[questionCount][randomPosition[questionCount][0]];
+                        document.getElementById('answerBtnB').innerHTML = randAnswer[questionCount][randomPosition[questionCount][1]];
+                        document.getElementById('answerBtnC').innerHTML = randAnswer[questionCount][randomPosition[questionCount][2]];
+                        document.getElementById('answerBtnD').innerHTML = randAnswer[questionCount][randomPosition[questionCount][3]];
+                    }else{
+                        document.getElementById('correct').innerHTML = '점수' + (correctCount+1) + '/' + (questionCount+1);
+                    }
+                }else{
+                    if(questionCount != vocaList.length-1){
+                        questionCount++;
+                        document.getElementById('word').innerHTML = Object.keys(vocaList[questionCount]);
+                        document.getElementById('answerBtnA').innerHTML = randAnswer[questionCount][randomPosition[questionCount][0]];
+                        document.getElementById('answerBtnB').innerHTML = randAnswer[questionCount][randomPosition[questionCount][1]];
+                        document.getElementById('answerBtnC').innerHTML = randAnswer[questionCount][randomPosition[questionCount][2]];
+                        document.getElementById('answerBtnD').innerHTML = randAnswer[questionCount][randomPosition[questionCount][3]];
+                    }else{
+                        document.getElementById('correct').innerHTML = '점수' + (correctCount+1) + '/' + (questionCount+1);
+                    }
+                }
+            }
+        </script>
+    {% else %}
+        <h1>저장된 단어가 없습니다.</h1>
+    {% endif %}
+</body>
+{% endblock %}
