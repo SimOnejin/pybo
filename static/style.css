@@ -1,3 +1,13 @@
+@font-face {
+    font-family: 'dodum';
+    src: url('../static/GowunDodum-Regular.ttf') format('truetype');
+}
+
+body{
+    font-family: 'dodum';
+}
+
+
 /*
 textarea {
     width:100%;
