@@ -15,6 +15,15 @@ urlpatterns = [
     path('<int:question_id>/',
          base_views.detail, name='detail'),
 
+    path('voca/create/',
+         base_views.voca_create, name='voca_create'),
+    path('voca/list/',
+         base_views.voca_list, name='voca_list'),
+    path('voca/detail/<int:voca_id>/',
+         base_views.voca_detail, name='voca_detail'),
+    path('ocr/<int:voca_id>/',
+         base_views.ocrTest1, name='ocrTest1'),
+
     # question_views.py
     path('question/create/',
          question_views.question_create, name='question_create'),

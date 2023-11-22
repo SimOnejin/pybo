@@ -6,6 +6,12 @@ import os
 import random
 from googletrans import Translator
 
+
+from django.contrib.auth.decorators import login_required
+from django.utils import timezone
+from pybo.forms import VocaForm
+from pybo.models import Voca
+
 from ..models import Question
 from ..models import Article
 
@@ -54,6 +60,19 @@ def detail(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     context = {'question': question}
     return render(request, 'pybo/question_detail.html', context)
+
+
+def voca_list(request):
+    voca_list = Voca.objects.order_by('-create_date')
+    context = {'voca_list': voca_list}
+    return render(request, 'pybo/voca_list.html', context)
+def voca_detail(request, voca_id):
+    """
+    pybo 내용 출력
+    """
+    voca = get_object_or_404(Voca, pk=voca_id)
+    context = {'voca': voca}
+    return render(request, 'pybo/voca_detail.html', context)
 
 # def ocr_page(request, question_id):
 #     question = get_object_or_404(Question, pk=question_id)
@@ -115,6 +134,47 @@ def ocrTest(request, question_id):
     # texts = Nice(image_url)
     context = {'texts':texts, 'combined_list': combined_list, 'image':new_image_path}
     return render(request, 'pybo/ocr.html', context)
+def ocrTest1(request, voca_id):
+    # request.session['texts'] = []
+    global texts, new_image_path
+    texts = []
+    voca = get_object_or_404(Voca, pk=voca_id)
+    # image_url = question.image.url
+    image_path = os.path.join(settings.MEDIA_ROOT, voca.image.name)
+    if not os.path.isfile(image_path):
+        # 파일이 존재하지 않을 때 처리할 로직
+        pass
+    else:
+        # 파일이 존재하면 처리 계속하기
+        # request.session['texts'] = Nice(image_path)
+        texts = Nice(image_path)
+        # texts = request.session['texts']
+        # texts = request.session.get('texts', None)
+
+    request.session['key'] = 'value'
+
+    # 파일 경로와 확장자를 분리
+    file_path, file_extension = os.path.splitext(voca.image.name)
+    # 문구 추가
+    new_image_path = file_path + '_lined' + file_extension
+
+    translator = Translator()
+    trans = []
+    for i in texts:
+        # request.session['result'] = translator.translate(i, dest='ko')
+        # result = request.session['result']
+        # result = request.session.get('result', None)
+
+        result = translator.translate(i, dest='ko')
+        trans.append(result.text)
+
+    global combined_list
+
+    combined_list = list(zip(texts, trans))
+
+    # texts = Nice(image_url)
+    context = {'texts':texts, 'combined_list': combined_list, 'image':new_image_path}
+    return render(request, 'pybo/ocr.html', context)
 
 def create(request):
     if request.method == 'POST':
@@ -167,3 +227,20 @@ def translate(request):
 def session_reset(request):
     request.session.clear()
     return render(request, 'pybo/question_list.html')
+
+
+@login_required(login_url='common:login')
+def voca_create(request):
+    if request.method == 'POST':
+        form = VocaForm(request.POST)
+        if form.is_valid():
+            voca = form.save(commit=False)
+            voca.author = request.user  # author 속성에 로그인 계정 저장
+            voca.create_date = timezone.now()
+            voca.image = request.FILES.get('image',None) #request의 FILES의 image 속성 가져온다
+            voca.save()
+            return redirect('pybo:voca_list')
+    else:
+        form = VocaForm()
+    context = {'form': form}
+    return render(request, 'pybo/voca_scan.html', context)

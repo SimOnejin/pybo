@@ -1,5 +1,19 @@
 from django import forms
-from pybo.models import Question, Answer, Comment, UserImage
+from pybo.models import Question, Answer, Comment, UserImage, Voca
+
+
+class VocaForm(forms.ModelForm):
+    class Meta:
+        model = Voca  # 사용할 모델
+        fields = ['subject', 'image']  # QuestionForm에서 사용할 Question 모델의 속성
+        # widgets = {
+        #     'subject': forms.TextInput(attrs={'class': 'form-control'}),
+        #     'content': forms.Textarea(attrs={'class': 'form-control', 'rows':10}),
+        # }
+        labels = {
+            'subject': '제목',
+            'image': '사진',
+        }
 
 class QuestionForm(forms.ModelForm):
     class Meta:

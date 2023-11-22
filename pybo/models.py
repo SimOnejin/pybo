@@ -14,6 +14,14 @@ class Question(models.Model):
     def __str__(self):
         return self.subject
 
+class Voca(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='author_voca')
+    subject = models.CharField(max_length=200)
+    create_date = models.DateTimeField()
+    image = models.ImageField(upload_to='user_voca/', null=True, blank=True)
+
+    def __str__(self):
+        return self.subject
 
 class Answer(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='author_answer')

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <h5 class="my-3 border-bottom pb-2">사진등록</h5>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+<!--        {{ modelform }}-->
+        {{ form.as_p }}
+        {%if form.errors %}
+        <div class="alert alert-danger" role="alert">
+            {% for field in form %}
+            {%if field.errors %}
+            <div>
+                <strong>{{ field.label }}</strong>
+                {{ field.errors }}
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        {% endif %}
+        <button type="submit" class="btn btn-primary">저장하기</button>
+    </form>
+
+</div>
+{% endblock %}

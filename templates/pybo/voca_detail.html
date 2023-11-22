@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load pybo_filter %}
+{% block content %}
+
+<div class="container my-3">
+
+    <!-- message 표시 -->
+    {% if messages %}
+        <div class="alert alert-danger my-3" role="alert">
+            {% for message in messages %}
+            <strong>{{ message.tags }}</strong>
+            <ul>
+                <li>{{ message.message }}</li>
+            </ul>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <!-- 질문 -->
+    <h2 class="border-bottom py-2">{{ voca.subject }}</h2>
+    <div class="card my-3">
+        <div class="card-body">
+            <div class="card-text" style="white-space: pre-line;">{{ voca.content|mark }}</div>
+            <!--이미지 불러오기-->
+            <img src = "../../../media/{{ voca.image }}" style="width:300px; margin-left:auto; margin-right:auto;">
+
+            <div class="d-flex justify-content-end">
+                {% if voca.modify_date %}
+                <div class="badge bg-light text-dark p-2 text-start mx-3">
+                    <div class="mb-2">
+                        modified at
+                    </div>
+                    <div>{{ voca.modify_date }}</div>
+                </div>
+                {% endif %}
+                <div class="badge bg-light text-dark p-2 text-start">
+                    <div class="mb-2">{{ voca.author.username }}</div>
+                    <div>{{ voca.create_date }}</div>
+                </div>
+            </div>
+
+            <div class="my-3">
+                <form method="post" action="{% url 'pybo:ocrTest1' voca.id %}">
+                    {% csrf_token %}
+                    <input type="submit" class="btn btn-sm btn-outline-secondary" value="이미지 단어 추출하기">
+                </form>
+                {% if request.user == voca.author %}
+                    <a href="{% url 'pybo:question_modify' voca.id  %}" class="btn btn-sm btn-outline-secondary">수정</a>
+                    <a href="#" class="delete btn btn-sm btn-outline-secondary" data-uri="{% url 'pybo:question_delete' voca.id  %}">삭제</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block script %}
+<script type='text/javascript'>
+const delete_elements = document.getElementsByClassName("delete");
+Array.from(delete_elements).forEach(function(element) {
+    element.addEventListener('click', function() {
+        if(confirm("정말로 삭제하시겠습니까?")) {
+            location.href = this.dataset.uri;
+        };
+    });
+});
+const recommend_elements = document.getElementsByClassName("recommend");
+Array.from(recommend_elements).forEach(function(element) {
+    element.addEventListener('click', function() {
+        if(confirm("정말로 추천하시겠습니까?")) {
+            location.href = this.dataset.uri;
+        };
+    });
+});
+</script>
+{% endblock %}
