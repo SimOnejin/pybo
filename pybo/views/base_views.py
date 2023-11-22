@@ -80,9 +80,9 @@ def ocrTest(request, question_id):
         pass
     else:
         # 파일이 존재하면 처리 계속하기
-        request.session['texts'] = Nice(image_path)
-        # texts = Nice(image_path)
-        texts = request.session['texts']
+        # request.session['texts'] = Nice(image_path)
+        texts = Nice(image_path)
+        # texts = request.session['texts']
         # texts = request.session.get('texts', None)
 
     request.session['key'] = 'value'
@@ -92,8 +92,28 @@ def ocrTest(request, question_id):
     # 문구 추가
     new_image_path = file_path + '_lined' + file_extension
 
+
+
+
+    translator = Translator()
+    trans = []
+    for i in texts:
+        # request.session['result'] = translator.translate(i, dest='ko')
+        # result = request.session['result']
+        # result = request.session.get('result', None)
+
+        result = translator.translate(i, dest='ko')
+        trans.append(result.text)
+
+    global combined_list
+
+    combined_list = list(zip(texts, trans))
+
+
+
+
     # texts = Nice(image_url)
-    context = {'texts': texts, 'image':new_image_path}
+    context = {'texts':texts, 'combined_list': combined_list, 'image':new_image_path}
     return render(request, 'pybo/ocr.html', context)
 
 def create(request):
