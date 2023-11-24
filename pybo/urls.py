@@ -21,7 +21,7 @@ urlpatterns = [
          base_views.voca_list, name='voca_list'),
     path('voca/detail/<int:voca_id>/',
          base_views.voca_detail, name='voca_detail'),
-    path('ocr/<int:voca_id>/',
+    path('ocrVoca/<int:voca_id>/',
          base_views.ocrTest1, name='ocrTest1'),
     path('vocaTest', base_views.vocaTest, name="vocaTest"),
 
