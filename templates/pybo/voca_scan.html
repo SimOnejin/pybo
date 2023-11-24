@@ -4,7 +4,7 @@
     <h5 class="my-3 border-bottom pb-2 text-left" style="margin-left:10%">사진등록</h5>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <div style="margin-left:40px; width:100px;">
+        <div style="margin-left:38px; width:100px;">
             {{ form.as_p }}
         </div>
         {%if form.errors %}
