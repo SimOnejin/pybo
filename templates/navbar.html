@@ -39,25 +39,25 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0"  style="text-align: right; background-color: black;">
                 <li class="nav-item font">
                     {% if user.is_authenticated %}
-                    <a class="nav-link" href="{% url 'common:logout' %}">{{ user.username }} (로그아웃)</a>
+                    <a class="nav-link" href="{% url 'common:logout' %}" style="color: white;">{{ user.username }} (로그아웃)</a>
                     {% else %}
-                    <a class="nav-link" href="{% url 'common:login' %}">로그인</a>
+                    <a class="nav-link" href="{% url 'common:login' %}" style="color: white;">로그인</a>
                     {% endif %}
 
                 </li>
                 <li>
                     {% if not user.is_authenticated %}
-                    <a class="nav-link font" href="{% url 'common:signup' %}">회원가입</a>
+                    <a class="nav-link font" href="{% url 'common:signup' %}" style="color: white;">회원가입</a>
                     {% endif %}
                 </li>
                 <li>
-                    <a class="nav-link font" href="{% url 'pybo:voca_create' %}">단어 스캔하기</a>
+                    <a class="nav-link font" href="{% url 'pybo:voca_create' %}" style="color: white;">단어 스캔하기</a>
                 </li>
                 <li>
-                    <a class="nav-link font" href="{% url 'pybo:voca_list' %}">나만의 단어장</a>
+                    <a class="nav-link font" href="{% url 'pybo:voca_list' %}" style="color: white;">나만의 단어장</a>
                 </li>
                 <li>
-                    <a class="nav-link font" href="{% url 'pybo:vocaTest' %}">단어 테스트하기</a>
+                    <a class="nav-link font" href="{% url 'pybo:vocaTest' %}" style="color: white;">단어 테스트하기</a>
                 </li>
             </ul>
         </div>
