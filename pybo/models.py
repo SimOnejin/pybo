@@ -6,7 +6,7 @@ from django.db import connection
 # Create your models here.
 # from django.utils.crypto import get_random_string
 
-cursor = connection.cursor()
+
 
 
 class Question(models.Model):
@@ -85,12 +85,15 @@ class VocaList:
         self.voca_class = voca_class
 
     def create(self):
-        query = ("CREATE TABLE `" + self.user_id + "_voca` ("
-                 + "`voca_idx` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, "
-                 + "`voca_japan` varchar(20) NOT NULL, "
-                 + "`voca_korea` varchar(20), "
-                 + "`voca_class` varchar(100)"
-                 + ")")
+        cursor = connection.cursor()
+        query = (
+                "CREATE TABLE " + self.user_id + "_voca ("
+                + "voca_idx SERIAL NOT NULL PRIMARY KEY, "
+                + "voca_japan VARCHAR(20) NOT NULL, "
+                + "voca_korea VARCHAR(20), "
+                + "voca_class VARCHAR(100)"
+                + ")"
+        )
         cursor.execute(query)
 
     def save(self):
@@ -143,7 +146,7 @@ class Friends:
         self.friends_create_date = friends_create_date
 
     def create(self):
-        query = ("CREATE TABLE `" + self.user_id + "_friends` ("
+        query = ("CREATE TABLE " + self.user_id + "_friends` ("
                  + "`friends_idx` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, "
                  + "`friends_code` varchar(10) NOT NULL UNIQUE, "
                  + "`friends_id` varchar(50) NOT NULL UNIQUE, "
@@ -188,3 +191,4 @@ class Friends:
     def drop(self):
         query = ("DROP TABLE `" + self.user_id + "_friends`")
         cursor.execute(query)
+

@@ -31,22 +31,21 @@ def signup(request):
 
 
 def test(requst):
-    # vocaTest = VocaList(user_id="test")
-    cursor = connection.cursor()
+    vocaTest = VocaList(user_id="test")
 
-    query = (
-            "CREATE TABLE test_voca ("
-            + "voca_idx SERIAL NOT NULL PRIMARY KEY, "
-            + "voca_japan VARCHAR(20) NOT NULL, "
-            + "voca_korea VARCHAR(20), "
-            + "voca_class VARCHAR(100)"
-            + ")"
-    )
-
-    cursor.execute(query)
+    # query = (
+    #         "CREATE TABLE test_voca ("
+    #         + "voca_idx SERIAL NOT NULL PRIMARY KEY, "
+    #         + "voca_japan VARCHAR(20) NOT NULL, "
+    #         + "voca_korea VARCHAR(20), "
+    #         + "voca_class VARCHAR(100)"
+    #         + ")"
+    # )
+    #
+    # cursor.execute(query)
 
     # query = ("select * from pybo_voca")
     # cursor.execute(query)
 
-    # vocaTest.create()
+    vocaTest.create()
     return HttpResponse("test")
