@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from common.forms import UserForm
 from pybo.models import VocaList
-form django.http import HttpResponse
+from django.http import HttpResponse
 
 def signup(request):
     if request.method == "POST":
