@@ -46,7 +46,7 @@
             <!--이미지 불러오기-->
             <img src = "../../../media/{{ voca.image }}" style="width:300px; margin-left:auto; margin-right:auto;">
 
-            <div class="my-3">
+            <div class="my-3" style="margin-bottom:-20px;">
                 <form method="post" action="{% url 'pybo:ocrTest1' voca.id %}">
                     {% csrf_token %}
                     <input type="submit" class="btn btn-sm btn-outline-secondary" value="이미지 단어 추출하기">
