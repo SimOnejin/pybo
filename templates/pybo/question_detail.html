@@ -43,17 +43,21 @@
 
 
             <div class="row container-fluid text-center justify-content-center mt-1">
+            <!-- 부모 요소 추가 -->
+            <div class="col-12">
                 <!--이미지 불러오기-->
-                <img class="d-block mx-auto text-center" src = "../media/{{ question.image }}" style="width:300px;">
-                {% if texts %}
-                    {% for item in texts %}
-                        <div>
-                            {{ forloop.counter }}
-                            {{ item }}
-                        </div>
-                    {% endfor %}
-                {% endif %}
+                <img class="d-block mx-auto text-center" src="../media/{{ question.image }}" style="width:300px;">
+                    {% if texts %}
+                        {% for item in texts %}
+                            <div>
+                                {{ forloop.counter }}
+                                {{ item }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
             </div>
+
 
             <div class="container">
                 <!--추출하기, 추천 버튼-->
