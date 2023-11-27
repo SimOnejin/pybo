@@ -26,6 +26,7 @@ def signup(request):
         form = UserForm()
     return render(request, 'common/signup.html', {'form': form})
 
+
 def test(requst):
     vocaTest = VocaList(user_id="test")
 
