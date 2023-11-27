@@ -99,7 +99,7 @@
                             <div class="col mb-4 text-align-center mt-2">글쓴이 : modified at</div>
                             <div class="col mb-2 text-align-right" style="margin-bottom:-3px;">수정날짜 : {{ answer.modify_date|date:"m월 d일 H시 i분"  }}</div>
                         </div>
-                    {% endif}
+                    {% endif %}
 
                     <div class="justify-content-center row badge bg-light text-dark p-2 text-start">
                         <div class="col mb-2 text-align-center mt-2">글쓴이 : {{ answer.author.username }}</div>
@@ -107,32 +107,29 @@
                     </div>
                 </div>
 
-                <!-- 답변내용 -->
+                <!--답변내용-->
                 <div class="card-text" style="white-space: pre-line;">{{ answer.content|mark }}</div>
 
-                <!-- 버튼 -->
+                <!--버튼-->
                 <div class="row" style="margin-bottom:-20px; margin-top:-20px;">
                     <div class="col my-3 justify-content-start" style="width:50%;">
+                        <a href="javascript:void(0)" data-uri="{% url 'pybo:answer_vote' answer.id  %}"
+                           class="recommend btn btn-sm btn-outline-secondary"> 추천
+                            <span class="badge rounded-pill bg-success">{{answer.voter.count}}</span>
+                        </a>
 
-                        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                            <a href="javascript:void(0)" data-uri="{% url 'pybo:answer_vote' answer.id  %}"
-                               class="recommend btn btn-sm btn-outline-secondary"> 추천
-                                <span class="badge rounded-pill bg-success">{{answer.voter.count}}</span>
-                            </a>
-
-                            {% if request.user == answer.author %}
-                                <a href="{% url 'pybo:answer_modify' answer.id  %}"
-                                   class="btn btn-sm btn-outline-secondary">수정</a>
-                                <a href="#" class="delete btn btn-sm btn-outline-secondary "
-                                   data-uri="{% url 'pybo:answer_delete' answer.id  %}">삭제</a>
-                            {% endif %}
-                        </div>
+                        {% if request.user == answer.author %}
+                            <a href="{% url 'pybo:answer_modify' answer.id  %}"
+                               class="btn btn-sm btn-outline-secondary">수정</a>
+                            <a href="#" class="delete btn btn-sm btn-outline-secondary "
+                               data-uri="{% url 'pybo:answer_delete' answer.id  %}">삭제</a>
+                        {% endif %}
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
-
 {% endfor %}
 </div>
     <form action="{% url 'pybo:answer_create' question.id %}" method="post" class="my-3">
