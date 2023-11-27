@@ -17,8 +17,10 @@
     {% endif %}
 
     <!-- 질문 -->
-    <a onclick="history.back()" class="btn btn-primary" style="float: left;"> > </a>
-    <h2 class="border-bottom py-2 ml-2" style="float: left;">{{ question.subject }}</h2>
+    <h2 class="border-bottom py-2 ml-2" style="float: left;">
+        <a onclick="history.back()" class="btn btn-primary" style="float: left;"> < </a>
+        {{ question.subject }}
+    </h2>
     <div class="col card my-3">
         <div class="card-body justify-content-center">
             <div class="row card-text justify-content-center" style="white-space: pre-line;">
