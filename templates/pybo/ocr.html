@@ -26,10 +26,12 @@
             <div class="col text-center" style="width:50%;">
                 <div class="d-flex justify-content-end align-items-center" style="margin-right:10%; margin-top: 3%">
                     <h4>단어 수정하기</h4>
+                    <p id="test"></p>
                 </div>
             </div>
             <div class="col text-center" style="width:50%;">
                 <div class="d-flex justify-content-end align-items-center">
+                    <button onclick="summitBtn()" class="btn btn-outline-primary" style="width: 70%; margin-right: 17%;">등록하기</button>
                     <a href="{% url 'pybo:shuffle' %}" class="btn btn-outline-primary" style="width: 70%; margin-right: 17%;">Summit</a>
                 </div>
             </div>
@@ -37,7 +39,7 @@
     </div>
 
     <div class="row justify-content-center">
-        <form style="width: 300px; height: 300px; overflow: scroll; box-shadow: 5px 10px 15px gray; border-radius: 15px;">
+        <form id="vocaFeedback" style="width: 300px; height: 300px; overflow: scroll; box-shadow: 5px 10px 15px gray; border-radius: 15px;">
             <div class="col text-center">
                 {% if texts %}
                     <table class="table table-bordered" style="margin-left: auto; margin-right: auto; margin-top: 10%;">
@@ -63,6 +65,30 @@
     </div>
 </div>
 </body>
+
+<script>
+    function summitBtn() {
+        let matchedPairs = [];
+
+        let rows = document.querySelectorAll('#vocaFeedback table tbody tr');
+
+        // 각 행을 순회하며 텍스트와 번역을 가져와서 matchedPairs 배열에 추가합니다.
+        rows.forEach(function(row) {
+            // 현재 행에서 텍스트와 번역을 가져옵니다.
+            let text = row.querySelector('td:nth-child(2) textarea').value.trim();
+            let translate = row.querySelector('td:nth-child(3) textarea').value.trim();
+
+            // matchedPairs 배열에 텍스트와 번역을 매칭한 객체를 추가합니다.
+            matchedPairs.push({text: text, translate: translate});
+        });
+
+        let content = prompt("단어장 제목을 지정해주세요.");
+
+        window.location.href = '{% url 'pybo:shuffle' %}?content=' + encodeURIComponent(content) + '&matchedPairs=' + encodeURIComponent(JSON.stringify(matchedPairs));
+    }
+</script>
+
+
 </html>
 
 {% endblock %}

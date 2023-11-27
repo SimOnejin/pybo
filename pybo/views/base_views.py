@@ -5,6 +5,7 @@ from django.conf import settings
 import os
 import random
 from googletrans import Translator
+import json
 
 
 from django.contrib.auth.decorators import login_required
@@ -192,7 +193,22 @@ def upload_image(request):
         form = UserImageForm()
     return render(request, 'pybo/ocr.html', {'form': form})
 
+
 def shuffle(request):
+    # URL 매개변수에서 matchedPairs 가져오기
+    content = request.GET.get('content', '')
+    matched_pairs_json = request.GET.get('matchedPairs', '[]')
+
+    # JSON 형식의 문자열을 파이썬 리스트로 변환
+    matched_pairs = json.loads(matched_pairs_json)
+    random.shuffle(matched_pairs)
+
+    # matchedPairs를 템플릿에 전달
+    context = {'combined_list': matched_pairs, "content": content}
+
+    # 템플릿 렌더링
+    return render(request, 'pybo/ocr_lists.html', context)
+def shuffle1(request):
     # 리스트의 순서를 랜덤하게 섞음
     # random.shuffle(texts)
     request.session.clear()

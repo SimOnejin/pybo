@@ -63,3 +63,126 @@ class Article(models.Model):
     image = models.ImageField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+
+
+
+
+from django.db import connection
+# Create your models here.
+# from django.utils.crypto import get_random_string
+
+cursor = connection.cursor()
+class VocaList:
+    voca_idx = ""
+
+    def __init__(self, user_id="", voca_japan="", voca_korea="", voca_class=""):
+        self.user_id = user_id
+        self.voca_japan = voca_japan
+        self.voca_korea = voca_korea
+        self.voca_class = voca_class
+
+    def create(self):
+        query = ("CREATE TABLE `" + self.user_id + "_voca` ("
+                 + "`voca_idx` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, "
+                 + "`voca_japan` varchar(20) NOT NULL, "
+                 + "`voca_korea` varchar(20), "
+                 + "`voca_class` varchar(100)"
+                 + ")")
+        cursor.execute(query)
+
+    def save(self):
+        query = ("INSERT INTO `" + self.user_id + "_voca` "
+                 + "(voca_japan, voca_korea, voca_class) values ("
+                 + "'" + self.voca_japan + "', "
+                 + "'" + self.voca_korea + "', "
+                 + "'" + self.voca_class + "'"
+                 + ")")
+        cursor.execute(query)
+
+    class objects:
+        def decorator(func):
+            def wrapper(self, *args, **kwargs):
+                data_list = []
+
+                datas = func(self, *args, **kwargs)
+                for i in datas:
+                    d = dict()
+                    d["voca_idx"] = i[0]
+                    d["voca_japan"] = i[1]
+                    d["voca_korea"] = i[2]
+                    d["voca_class"] = i[3]
+                    data_list.append(d)
+
+                return data_list
+            return wrapper
+
+        @decorator
+        def raw(query):
+            cursor.execute(query)
+            return cursor.fetchall()
+
+
+
+
+
+
+
+
+
+class Friends:
+    friends_idx = ""
+
+    def __init__(self, user_id="", friends_code="", friends_id="", friends_status="", friends_create_date=""):
+        self.user_id = user_id
+        self.friends_code = friends_code
+        self.friends_id = friends_id
+        self.friends_status = friends_status
+        self.friends_create_date = friends_create_date
+
+    def create(self):
+        query = ("CREATE TABLE `" + self.user_id + "_friends` ("
+                 + "`friends_idx` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, "
+                 + "`friends_code` varchar(10) NOT NULL UNIQUE, "
+                 + "`friends_id` varchar(50) NOT NULL UNIQUE, "
+                 + "`friends_status` varchar(10), "
+                 + "`friends_create_date` datetime(6) NOT NULL"
+                 + ")")
+        cursor.execute(query)
+
+    def save(self):
+        query = ("INSERT INTO `" + self.user_id + "_voca` "
+                 + "(friends_code, friends_id, friends_status, friends_create_date) values ("
+                 + "'" + self.friends_code + "', "
+                 + "'" + self.friends_id + "', "
+                 + "'" + self.friends_status + "', "
+                 + "'" + self.friends_create_date + "'"
+                 + ")")
+        cursor.execute(query)
+
+    class objects:
+        def decorator(func):
+            def wrapper(self, *args, **kwargs):
+                data_list = []
+
+                datas = func(self, *args, **kwargs)
+                for i in datas:
+                    d = dict()
+                    d["friends_idx"] = i[0]
+                    d["friends_code"] = i[1]
+                    d["friends_id"] = i[2]
+                    d["friends_status"] = i[3]
+                    d["friends_create_date"] = i[4]
+                    data_list.append(d)
+
+                return data_list
+            return wrapper
+
+        @decorator
+        def raw(query):
+            cursor.execute(query)
+            return cursor.fetchall()
+
+    def drop(self):
+        query = ("DROP TABLE `" + self.user_id + "_friends`")
+        cursor.execute(query)
