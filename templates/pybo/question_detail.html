@@ -82,7 +82,7 @@
             <div class="card-text" style="white-space: pre-line;">{{ answer.content|mark }}</div>
 
             <div class="row my-3 align-items-end" >
-                <div class="col" style="margin-left:-10px;">
+                <div class="col" style="margin-left:-3px;">
                     <a href="javascript:void(0)" data-uri="{% url 'pybo:answer_vote' answer.id  %}"
                        class="recommend btn btn-sm btn-outline-secondary"> 추천
                         <span class="badge rounded-pill bg-success">{{answer.voter.count}}</span>
