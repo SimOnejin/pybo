@@ -106,12 +106,12 @@
                     {% if answer.modify_date %}
                     <div class="badge bg-light text-dark p-2 text-start mx-3 align-items-end">
                         <div class="mb-2">modified at</div>
-                        <div>{{ answer.modify_date }}</div>
+                        <div>{{ answer.modify_date|date:"m / d / H / i"  }}</div>
                     </div>
                     {% endif %}
                     <div class="badge bg-light text-dark p-2 text-start">
                         <div class="mb-2">{{ answer.author.username }}</div>
-                        <div>{{ answer.create_date }}</div>
+                        <div>{{ answer.create_date|date:"m / d / H / i"  }}</div>
                     </div>
                 </div>
 
