@@ -30,48 +30,46 @@
                 </div>
         </div>
     </div>
-    <div style="border-radius:20px;">
-        <table class="table">
-            <thead>
-            <tr class="text-center thead-dark font">
-                <th style="width:11%">번호</th>
-                <th style="width:11%">추천</th>
-                <th class="col-4">제목</th>
-                <th class="col-2">글쓴이</th>
-                <th class="col-2">작성일</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% if question_list %}
-            {% for question in question_list %}
-            <tr class="text-center">
-                <td>
-                    <!-- 번호 = 전체건수 - 시작인덱스 - 현재인덱스 + 1 -->
-                    {{ question_list.paginator.count|sub:question_list.start_index|sub:forloop.counter0|add:1 }}
-                </td>
-                <td>
-                    {% if question.voter.all.count > 0 %}
-                    <span class="badge badge-warning px-2 py-1">{{ question.voter.all.count }}</span>
-                    {% endif %}
-                </td>
-                <td class="text-left">
-                    <a href="{% url 'pybo:detail' question.id %}" class="text-decoration-none text-dark">{{ question.subject }}</a>
-                    {% if question.answer_set.count > 0 %}
-                    <span class="text-danger small ml-2">{{ question.answer_set.count }}</span>
-                    {% endif %}
-                </td>
-                <td>{{ question.author.username }}</td>  <!-- 글쓴이 추가 -->
-                <td>{{ question.create_date|date:"m / d"}}</td>
-            </tr>
-            {% endfor %}
-            {% else %}
-            <tr>
-                <td colspan="3">질문이 없습니다.</td>
-            </tr>
-            {% endif %}
-            </tbody>
-        </table>
-    </div>
+    <table class="table">
+        <thead>
+        <tr class="text-center thead-dark font">
+            <th style="width:11%">번호</th>
+            <th style="width:11%">추천</th>
+            <th class="col-4">제목</th>
+            <th class="col-2">글쓴이</th>
+            <th class="col-2">작성일</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% if question_list %}
+        {% for question in question_list %}
+        <tr class="text-center">
+            <td>
+                <!-- 번호 = 전체건수 - 시작인덱스 - 현재인덱스 + 1 -->
+                {{ question_list.paginator.count|sub:question_list.start_index|sub:forloop.counter0|add:1 }}
+            </td>
+            <td>
+                {% if question.voter.all.count > 0 %}
+                <span class="badge badge-warning px-2 py-1">{{ question.voter.all.count }}</span>
+                {% endif %}
+            </td>
+            <td class="text-left">
+                <a href="{% url 'pybo:detail' question.id %}" class="text-decoration-none text-dark">{{ question.subject }}</a>
+                {% if question.answer_set.count > 0 %}
+                <span class="text-danger small ml-2">{{ question.answer_set.count }}</span>
+                {% endif %}
+            </td>
+            <td>{{ question.author.username }}</td>  <!-- 글쓴이 추가 -->
+            <td>{{ question.create_date|date:"m / d"}}</td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <tr>
+            <td colspan="3">질문이 없습니다.</td>
+        </tr>
+        {% endif %}
+        </tbody>
+    </table>
     <!-- 페이징처리 시작 -->
     <ul class="pagination justify-content-center font">
         <!-- 이전페이지 -->
