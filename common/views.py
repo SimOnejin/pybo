@@ -33,12 +33,7 @@ def signup(request):
 def test(requst):
     # vocaTest = VocaList(user_id="test")
 
-    query = ("CREATE TABLE `test_voca` ("
-             + "`voca_idx` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, "
-             + "`voca_japan` varchar(20) NOT NULL, "
-             + "`voca_korea` varchar(20), "
-             + "`voca_class` varchar(100)"
-             + ")")
+    query = ("select * from pybo_voca")
     cursor.execute(query)
 
     # vocaTest.create()
