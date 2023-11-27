@@ -116,20 +116,18 @@
                 <div class="card-text" style="white-space: pre-line;">{{ answer.content|mark }}</div>
 
                 <!-- 버튼 -->
-                <div class="row justify-content-start">
+                <div class="d-flex-row justify-content-start">
                     <div class="col">
-                        <div class="col">
-                        <a href="javascript:void(0)" data-uri="{% url 'pybo:answer_vote' answer.id  %}" class="recommend btn btn-sm btn-outline-secondary">추천 <span class="badge rounded-pill bg-success">{{answer.voter.count}}</span></a>
-                        </div>
-                        {% if request.user == answer.author %}
-                            <div class="col">
-                                <a href="{% url 'pybo:answer_modify' answer.id  %}" class="btn btn-sm btn-outline-secondary">수정</a>
-                            </div>
-                            <div class="col">
-                                <a href="#" class="delete btn btn-sm btn-outline-secondary" data-uri="{% url 'pybo:answer_delete' answer.id  %}">삭제</a>
-                            </div>
-                        {% endif %}
+                    <a href="javascript:void(0)" data-uri="{% url 'pybo:answer_vote' answer.id  %}" class="recommend btn btn-sm btn-outline-secondary">추천 <span class="badge rounded-pill bg-success">{{answer.voter.count}}</span></a>
                     </div>
+                    {% if request.user == answer.author %}
+                        <div class="col">
+                            <a href="{% url 'pybo:answer_modify' answer.id  %}" class="btn btn-sm btn-outline-secondary">수정</a>
+                        </div>
+                        <div class="col">
+                            <a href="#" class="delete btn btn-sm btn-outline-secondary" data-uri="{% url 'pybo:answer_delete' answer.id  %}">삭제</a>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
