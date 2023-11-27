@@ -24,13 +24,11 @@
 
             <!--수정날짜-->
             <div class="row">
-                <div class="col justify-content-end" style="width:50%; margin-right:-45px; margin-bottom:-20px;">
+                <div class="justify-content-end" style="width:50%; margin-right:-45px; margin-bottom:-20px;">
                     {% if question.modify_date %}
                         <div class="badge bg-light text-dark p-2 text-start mx-3">
-                            <div class="mb-2">
-                                modified at
-                            </div>
-                            <div>{{ question.modify_date }}</div>
+                            <div class="col mb-2">modified at</div>
+                            <div class="col">{{ question.modify_date }}</div>
                         </div>
                     {% endif %}
 
