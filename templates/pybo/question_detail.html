@@ -28,13 +28,13 @@
                     {% if question.modify_date %}
                         <div class="badge bg-light text-dark p-2 text-start mx-3">
                             <div class="col mb-2">modified at</div>
-                            <div class="col">{{ question.modify_date }}</div>
+                            <div class="col mb-2">{{ question.modify_date }}</div>
                         </div>
                     {% endif %}
 
                     <div class="badge bg-light text-dark p-2 text-start">
                         <div class="col mb-2">{{ question.author.username }}</div>
-                        <div class="col">{{ question.create_date }}</div>
+                        <div class="col mb-2">{{ question.create_date }}</div>
                     </div>
                 </div>
             </div>
