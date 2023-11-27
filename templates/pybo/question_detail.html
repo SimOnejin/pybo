@@ -23,17 +23,17 @@
             <div class="row card-text text-left" style="white-space: pre-line;">{{ question.content|mark }}</div>
 
             <!--수정날짜-->
-            <div class="justify-content-end" style="width:50%; margin-right:-45px; margin-bottom:-20px; width:100%">
+            <div class="justify-content-end" style="width:50%; margin-bottom:-20px; width:100%">
                 {% if question.modify_date %}
                     <div class="row badge bg-light text-dark p-2 text-start mx-3" style="width:100%">
-                        <div class="col mb-4" style="float:left">modified at</div>
-                        <div class="col mb-2" style="float:right">{{ question.modify_date }}</div>
+                        <div class="col mb-4 text-align-left">modified at</div>
+                        <div class="col mb-2 text-align-right">{{ question.modify_date }}</div>
                     </div>
                 {% endif %}
 
                 <div class="row badge bg-light text-dark p-2 text-start" style="width:100%">
-                    <div class="col mb-2" style="float:left">{{ question.author.username }}</div>
-                    <div class="col mb-2" style="float:right">{{ question.create_date }}</div>
+                    <div class="col mb-2 text-align-left">{{ question.author.username }}</div>
+                    <div class="col mb-2 text-align-right">{{ question.create_date }}</div>
                 </div>
             </div>
 
