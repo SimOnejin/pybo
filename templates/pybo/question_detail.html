@@ -18,7 +18,9 @@
 
     <!-- 질문 -->
     <h2 class="border-bottom py-2">
-        <a onclick="history.back()" class="btn text-primary" style="float: left; text-style:bold; margin-top: -7px; margin-right:10px; width:40px;"> <h2><</h2> </a>
+        <a onclick="history.back()" class="btn text-primary" style="float: left; text-style:bold; margin-top: -7px; margin-right:10px; width:40px;">
+            <h2><</h2>
+        </a>
         {{ question.subject }}
     </h2>
     <div class="col card my-3">
@@ -110,21 +112,18 @@
                     </div>
                 </div>
 
-                <!--답변내용-->
+                <!-- 답변내용 -->
                 <div class="card-text" style="white-space: pre-line;">{{ answer.content|mark }}</div>
 
-                <!--버튼-->
+                <!-- 버튼 -->
                 <div class="col justify-content-start">
-                    <a href="javascript:void(0)" data-uri="{% url 'pybo:answer_vote' answer.id  %}"
-                       class="recommend btn btn-sm btn-outline-secondary"> 추천
-                        <span class="badge rounded-pill bg-success">{{answer.voter.count}}</span>
-                    </a>
-                    {% if request.user == answer.author %}
-                        <a href="{% url 'pybo:answer_modify' answer.id  %}"
-                           class="btn btn-sm btn-outline-secondary">수정</a>
-                        <a href="#" class="delete btn btn-sm btn-outline-secondary "
-                           data-uri="{% url 'pybo:answer_delete' answer.id  %}">삭제</a>
-                    {% endif %}
+                    <div class="btn-group" role="group">
+                        <a href="javascript:void(0)" data-uri="{% url 'pybo:answer_vote' answer.id  %}" class="recommend btn btn-sm btn-outline-secondary">추천 <span class="badge rounded-pill bg-success">{{answer.voter.count}}</span></a>
+                        {% if request.user == answer.author %}
+                            <a href="{% url 'pybo:answer_modify' answer.id  %}" class="btn btn-sm btn-outline-secondary">수정</a>
+                            <a href="#" class="delete btn btn-sm btn-outline-secondary" data-uri="{% url 'pybo:answer_delete' answer.id  %}">삭제</a>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
         </div>
