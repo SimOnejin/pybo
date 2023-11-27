@@ -22,6 +22,25 @@
         <div class="card-body">
             <div class="row card-text text-left" style="white-space: pre-line;">{{ question.content|mark }}</div>
 
+            <!--수정날짜-->
+            <div class="row">
+                <div class="col justify-content-end" style="width:50%; margin-right:-45px; margin-bottom:-20px;">
+                    {% if question.modify_date %}
+                        <div class="badge bg-light text-dark p-2 text-start mx-3">
+                            <div class="mb-2">
+                                modified at
+                            </div>
+                            <div>{{ question.modify_date }}</div>
+                        </div>
+                    {% endif %}
+
+                    <div class="badge bg-light text-dark p-2 text-start">
+                        <div class="col mb-2">{{ question.author.username }}</div>
+                        <div class="col">{{ question.create_date }}</div>
+                    </div>
+                </div>
+            </div>
+
             <div style="row container text-center justify-content-center">
                 <!--이미지 불러오기-->
                 <img class="text-center" src = "../media/{{ question.image }}" style="width:300px;">
@@ -57,22 +76,6 @@
                             <a href="{% url 'pybo:question_modify' question.id  %}" class="btn btn-sm btn-outline-secondary">수정</a>
                             <a href="#" class="delete btn btn-sm btn-outline-secondary" data-uri="{% url 'pybo:question_delete' question.id  %}">삭제</a>
                         {% endif %}
-                    </div>
-
-                    <!--수정날짜-->
-                    <div class="col justify-content-end" style="width:50%; margin-right:-45px; margin-bottom:-20px;">
-                        {% if question.modify_date %}
-                            <div class="badge bg-light text-dark p-2 text-start mx-3">
-                                <div class="mb-2">
-                                    modified at
-                                </div>
-                                <div>{{ question.modify_date }}</div>
-                            </div>
-                        {% endif %}
-                        <div class="badge bg-light text-dark p-2 text-start">
-                            <div class="mb-2">{{ question.author.username }}</div>
-                            <div>{{ question.create_date }}</div>
-                        </div>
                     </div>
                 </div>
 
