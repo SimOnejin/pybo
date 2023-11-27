@@ -38,10 +38,12 @@
             <div class="container">
                 <!--추출하기, 추천 버튼-->
                 <div class="row">
-                    <form method="post" action="{% url 'pybo:ocrTest' question.id %}">
+                    <div class="col" style="width:50%; margin-right:10px;">
+                        <form method="post" action="{% url 'pybo:ocrTest' question.id %}">
                         {% csrf_token %}
                         <input type="submit" class="btn btn-sm btn-outline-secondary" value="이미지 단어 추출하기">
                     </form>
+                    </div>
                 </div>
 
                 <div class="row">
