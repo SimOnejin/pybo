@@ -109,7 +109,6 @@
     </ul>
     <!-- 페이징처리 끝 -->
     <a href="{% url 'pybo:question_create' %}" class="btn btn-primary">질문 등록하기</a>
-    <a onclick="history.back()" class="btn btn-primary"> > </a>
 </div>
 <form id="searchForm" method="get" action="{% url 'index' %}">
     <input type="hidden" id="kw" name="kw" value="{{ kw|default_if_none:'' }}">
