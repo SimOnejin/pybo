@@ -58,7 +58,7 @@
                 {% if request.user == voca.author %}
                     <div class="col">
                         <a href="{% url 'pybo:question_modify' voca.id  %}" class="btn btn-sm btn-outline-secondary">수정</a>
-                        <a href="#" class="delete btn btn-sm btn-outline-secondary" data-uri="{% url 'pybo:question_delete' voca.id  %}">삭제</a>
+                        <a href="#" class="delete btn btn-sm btn-outline-secondary text-secondary" data-uri="{% url 'pybo:question_delete' voca.id  %}">삭제</a>
                     </div>
                 {% endif %}
             </div>
