@@ -2,6 +2,13 @@ from django.contrib.auth.models import User
 from django.db import models
 
 
+from django.db import connection
+# Create your models here.
+# from django.utils.crypto import get_random_string
+
+cursor = connection.cursor()
+
+
 class Question(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='author_question')
     subject = models.CharField(max_length=200)
@@ -68,11 +75,6 @@ class Article(models.Model):
 
 
 
-from django.db import connection
-# Create your models here.
-# from django.utils.crypto import get_random_string
-
-cursor = connection.cursor()
 class VocaList:
     voca_idx = ""
 
