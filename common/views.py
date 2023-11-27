@@ -34,8 +34,16 @@ def test(requst):
     # vocaTest = VocaList(user_id="test")
     cursor = connection.cursor()
 
-    query = ("select * from pybo_voca")
+    query = ("CREATE TABLE `test_voca` ("
+             + "`voca_idx` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, "
+             + "`voca_japan` varchar(20) NOT NULL, "
+             + "`voca_korea` varchar(20), "
+             + "`voca_class` varchar(100)"
+             + ")")
     cursor.execute(query)
+
+    # query = ("select * from pybo_voca")
+    # cursor.execute(query)
 
     # vocaTest.create()
     return HttpResponse("test")
