@@ -17,7 +17,8 @@
     {% endif %}
 
     <!-- 질문 -->
-    <div class="col card my-3">
+    <h2 class="border-bottom py-2">{{ voca.subject }}</h2>
+    <div class="col card">
         <div class="card-body justify-content-center">
             <div class="row card-text" style="white-space: pre-line;">
                 <div class="text-left" style="height:50px;">
@@ -38,8 +39,6 @@
                     </div>
                 </div>
             </div>
-
-            <h2 class="border-bottom py-2">{{ voca.subject }}</h2>
 
             <!--이미지 불러오기-->
             <img src = "../../../media/{{ voca.image }}" style="width:300px; margin-left:auto; margin-right:auto;">
