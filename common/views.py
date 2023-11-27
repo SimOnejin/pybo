@@ -34,7 +34,7 @@ def test(requst):
     # vocaTest = VocaList(user_id="test")
     cursor = connection.cursor()
 
-    query = ("CREATE TABLE `test_voca` ("
+    query = ("CREATE TABLE test_voca ("
              + "`voca_idx` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, "
              + "`voca_japan` varchar(20) NOT NULL, "
              + "`voca_korea` varchar(20), "
