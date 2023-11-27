@@ -20,12 +20,12 @@
     <h2 class="border-bottom py-2">{{ question.subject }}</h2>
     <div class="col card my-3">
         <div class="card-body">
-            <div class="row card-text" style="white-space: pre-line;">
+            <div class="row card-text justify-content-center" style="white-space: pre-line;">
                 <div class="text-left" style="height:70px;">
                     {{ question.content|mark }}
                 </div>
 
-                <!--수정날짜-->
+                <!-- 수정날짜 -->
                 <div class="row justify-content-center text-center">
                     {% if question.modify_date %}
                         <div class="justify-content-center row badge bg-light text-dark p-2 text-center mx-3">
@@ -40,6 +40,7 @@
                     </div>
                 </div>
             </div>
+
 
             <div style="row container text-center justify-content-center">
                 <!--이미지 불러오기-->
