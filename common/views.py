@@ -5,6 +5,9 @@ from common.forms import UserForm
 from pybo.models import VocaList
 from django.http import HttpResponse
 
+from django.db import connection
+cursor = connection.cursor()
+
 def signup(request):
     if request.method == "POST":
         form = UserForm(request.POST)
@@ -28,7 +31,15 @@ def signup(request):
 
 
 def test(requst):
-    vocaTest = VocaList(user_id="test")
+    # vocaTest = VocaList(user_id="test")
 
-    vocaTest.create()
+    query = ("CREATE TABLE `test_voca` ("
+             + "`voca_idx` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, "
+             + "`voca_japan` varchar(20) NOT NULL, "
+             + "`voca_korea` varchar(20), "
+             + "`voca_class` varchar(100)"
+             + ")")
+    cursor.execute(query)
+
+    # vocaTest.create()
     return HttpResponse("test")
