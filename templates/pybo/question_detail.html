@@ -43,105 +43,104 @@
                 {% endif %}
             </div>
 
-
             <div class="row justify-content-center text-center mt-1">
                 <!-- 부모 요소 추가 -->
                 <div class="col-12">
                     <!--이미지 불러오기-->
                     <img class="d-block mx-auto text-center" src="../media/{{ question.image }}" style="width:100%;">
-                        {% if texts %}
-                            {% for item in texts %}
-                                <div>
-                                    {{ forloop.counter }}
-                                    {{ item }}
-                                </div>
-                            {% endfor %}
-                        {% endif %}
-                    </div>
+                    {% if texts %}
+                        {% for item in texts %}
+                            <div>
+                                {{ forloop.counter }}
+                                {{ item }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
                 </div>
+            </div>
 
-                <!--추출하기, 추천 버튼-->
-                <div class="row my-3 justify-content-start text-left">
-                    <div class="col" style="margin-bottom:-10px; margin-top:-15px;">
-                        <form method="post" action="{% url 'pybo:ocrTest' question.id %}" style="margin-bottom:-10px; margin-top:10px;">
-                            {% csrf_token %}
-                            <input type="submit" class="btn btn-sm btn-outline-primary mb-3" value="이미지 단어 추출하기">
-                        </form>
-                    </div>
+            <!--추출하기, 추천 버튼-->
+            <div class="row my-3 justify-content-start text-left">
+                <div class="col" style="margin-bottom:-10px; margin-top:-15px;">
+                    <form method="post" action="{% url 'pybo:ocrTest' question.id %}" style="margin-bottom:-10px; margin-top:10px;">
+                        {% csrf_token %}
+                        <input type="submit" class="btn btn-sm btn-outline-primary mb-3" value="이미지 단어 추출하기">
+                    </form>
                 </div>
+            </div>
 
-                <div class="row" style="margin-bottom:-20px; margin-top:-20px;">
-                     <div class="col my-3 justify-content-start" style="width:50%;">
-                        <a href="javascript:void(0)" data-uri="{% url 'pybo:question_vote' question.id  %}"
-                           class="recommend btn btn-sm btn-outline-secondary"> 추천
-                            <span class="badge rounded-pill bg-success">{{question.voter.count}}</span>
-                        </a>
+            <div class="row" style="margin-bottom:-20px; margin-top:-20px;">
+                 <div class="col my-3 justify-content-start" style="width:50%;">
+                    <a href="javascript:void(0)" data-uri="{% url 'pybo:question_vote' question.id  %}"
+                       class="recommend btn btn-sm btn-outline-secondary"> 추천
+                        <span class="badge rounded-pill bg-success">{{question.voter.count}}</span>
+                    </a>
 
-                        {% if request.user == question.author %}
-                            <a href="{% url 'pybo:question_modify' question.id  %}" class="btn btn-sm btn-outline-secondary">수정</a>
-                            <a href="#" class="delete btn btn-sm btn-outline-secondary" data-uri="{% url 'pybo:question_delete' question.id  %}">삭제</a>
-                        {% endif %}
-                    </div>
+                    {% if request.user == question.author %}
+                        <a href="{% url 'pybo:question_modify' question.id  %}" class="btn btn-sm btn-outline-secondary">수정</a>
+                        <a href="#" class="delete btn btn-sm btn-outline-secondary" data-uri="{% url 'pybo:question_delete' question.id  %}">삭제</a>
+                    {% endif %}
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- 답변 -->
-        <h5 class="border-bottom py-2">{{question.answer_set.count}}개의 답변이 있습니다.</h5>
-        {% for answer in question.answer_set.all %}
-        <a id="answer_{{ answer.id }}"></a>
+    <!-- 답변 -->
+    <h5 class="border-bottom py-2">{{question.answer_set.count}}개의 답변이 있습니다.</h5>
+    {% for answer in question.answer_set.all %}
+    <a id="answer_{{ answer.id }}"></a>
 
-        <div class="col card my-3">
-            <div class="card-body justify-content-center">
-                <div class="row card-text justify-content-center" style="white-space: pre-line;">
-                    <div class="row justify-content-center text-center align-items-center mb-2">
-                        {% if answer.modify_date %}
-                            <div class="justify-content-center row badge bg-light text-dark p-2 text-start">
-                                <div class="col mb-4 text-align-center mt-2">글쓴이 : modified at</div>
-                                <div class="col mb-2 text-align-right" style="margin-bottom:-3px;">수정날짜 : {{ answer.modify_date|date:"m월 d일 H시 i분"  }}</div>
-                            </div>
-                        {% endif %}
-
+    <div class="col card my-3">
+        <div class="card-body justify-content-center">
+            <div class="row card-text justify-content-center" style="white-space: pre-line;">
+                <div class="row justify-content-center text-center align-items-center mb-2">
+                    {% if answer.modify_date %}
                         <div class="justify-content-center row badge bg-light text-dark p-2 text-start">
-                            <div class="col mb-2 text-align-center mt-2">글쓴이 : {{ answer.author.username }}</div>
-                            <div class="col mb-2 text-align-right" style="margin-bottom:-3px;">수정날짜 : {{ answer.create_date|date:"m월 d일 H시 i분"  }}</div>
+                            <div class="col mb-4 text-align-center mt-2">글쓴이 : modified at</div>
+                            <div class="col mb-2 text-align-right" style="margin-bottom:-3px;">수정날짜 : {{ answer.modify_date|date:"m월 d일 H시 i분"  }}</div>
                         </div>
+                    {% endif %}
+
+                    <div class="justify-content-center row badge bg-light text-dark p-2 text-start">
+                        <div class="col mb-2 text-align-center mt-2">글쓴이 : {{ answer.author.username }}</div>
+                        <div class="col mb-2 text-align-right" style="margin-bottom:-3px;">수정날짜 : {{ answer.create_date|date:"m월 d일 H시 i분"  }}</div>
                     </div>
+                </div>
 
-                    <!--답변내용-->
-                    <div class="card-text" style="white-space: pre-line;">{{ answer.content|mark }}</div>
+                <!--답변내용-->
+                <div class="card-text" style="white-space: pre-line;">{{ answer.content|mark }}</div>
 
-                    <!--버튼-->
-                    <div class="row my-3 align-items-end">
-                        <div class="col" style="margin-left:-3px; margin-bottom:-20px;">
-                            <a href="javascript:void(0)" data-uri="{% url 'pybo:answer_vote' answer.id  %}"
-                               class="recommend btn btn-sm btn-outline-secondary"> 추천
-                                <span class="badge rounded-pill bg-success">{{answer.voter.count}}</span>
-                            </a>
-                            {% if request.user == answer.author %}
-                                <a href="{% url 'pybo:answer_modify' answer.id  %}"
-                                   class="btn btn-sm btn-outline-secondary">수정</a>
-                                <a href="#" class="delete btn btn-sm btn-outline-secondary "
-                                   data-uri="{% url 'pybo:answer_delete' answer.id  %}">삭제</a>
-                            {% endif %}
-                        </div>
+                <!--버튼-->
+                <div class="row my-3 align-items-end">
+                    <div class="col" style="margin-left:-3px; margin-bottom:-20px;">
+                        <a href="javascript:void(0)" data-uri="{% url 'pybo:answer_vote' answer.id  %}"
+                           class="recommend btn btn-sm btn-outline-secondary"> 추천
+                            <span class="badge rounded-pill bg-success">{{answer.voter.count}}</span>
+                        </a>
+                        {% if request.user == answer.author %}
+                            <a href="{% url 'pybo:answer_modify' answer.id  %}"
+                               class="btn btn-sm btn-outline-secondary">수정</a>
+                            <a href="#" class="delete btn btn-sm btn-outline-secondary "
+                               data-uri="{% url 'pybo:answer_delete' answer.id  %}">삭제</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    {% endfor %}
-        <form action="{% url 'pybo:answer_create' question.id %}" method="post" class="my-3">
-            {% csrf_token %}
-            {% include "form_errors.html" %}
-            <div class="mb-3">
-                <label for="content" class="form-label">답변내용</label>
-                <textarea {% if not user.is_authenticated %}disabled{% endif %}
-                          name="content" id="content" class="form-control" rows="10"></textarea>
-            </div>
-            <input type="submit" value="답변등록" class="btn btn-primary">
-        </form>
-    {% endblock %}
+{% endfor %}
+</div>
+    <form action="{% url 'pybo:answer_create' question.id %}" method="post" class="my-3">
+        {% csrf_token %}
+        {% include "form_errors.html" %}
+        <div class="mb-3">
+            <label for="content" class="form-label">답변내용</label>
+            <textarea {% if not user.is_authenticated %}disabled{% endif %}
+                      name="content" id="content" class="form-control" rows="10"></textarea>
+        </div>
+        <input type="submit" value="답변등록" class="btn btn-primary">
+    </form>
+{% endblock %}
 {% block script %}
 <script type='text/javascript'>
 const delete_elements = document.getElementsByClassName("delete");
