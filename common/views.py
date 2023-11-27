@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from common.forms import UserForm
 from pybo.models import VocaList
-
+form django.http import HttpResponse
 
 def signup(request):
     if request.method == "POST":
@@ -25,3 +25,9 @@ def signup(request):
     else:
         form = UserForm()
     return render(request, 'common/signup.html', {'form': form})
+
+def test(requst):
+    vocaTest = VocaList(user_id="test")
+
+    vocaTest.create()
+    return HttpResponse("test")
