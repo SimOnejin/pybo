@@ -6,7 +6,7 @@ from pybo.models import VocaList
 from django.http import HttpResponse
 
 from django.db import connection
-cursor = connection.cursor()
+
 
 def signup(request):
     if request.method == "POST":
@@ -32,6 +32,7 @@ def signup(request):
 
 def test(requst):
     # vocaTest = VocaList(user_id="test")
+    cursor = connection.cursor()
 
     query = ("select * from pybo_voca")
     cursor.execute(query)
