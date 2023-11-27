@@ -116,7 +116,7 @@
                 <div class="card-text" style="white-space: pre-line;">{{ answer.content|mark }}</div>
 
                 <div class="d-flex my-3 justify-content-start">
-                    <a href="javascript:void(0)" data-uri="{% url 'pybo:answer_vote' answer.id  %}" class="recommend btn btn-sm btn-outline-secondary" style="margin-right:5px;">추천
+                    <a href="javascript:void(0)" data-uri="{% url 'pybo:answer_vote' answer.id  %}" class="recommend btn btn-sm btn-outline-secondary" style="margin-right:5px; width:20px;">추천
                         <span class="badge rounded-pill bg-success">{{answer.voter.count}}</span>
                     </a>
 
