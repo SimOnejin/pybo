@@ -15,6 +15,9 @@ def signup(request):
             user = authenticate(username=username, password=raw_password)  # 사용자 인증
             login(request, user)  # 로그인
 
+            print(request.POST.get("username"))
+            print("test")
+
             vocaList = VocaList(user_id=request.POST.get("username"))
             vocaList.create()
 
