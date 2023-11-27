@@ -131,6 +131,7 @@
     </div>
 {% endfor %}
 </div>
+<div class="col">
     <form action="{% url 'pybo:answer_create' question.id %}" method="post" class="my-3">
         {% csrf_token %}
         {% include "form_errors.html" %}
@@ -141,6 +142,7 @@
         </div>
         <input type="submit" value="답변등록" class="btn btn-primary">
     </form>
+</div>
 {% endblock %}
 {% block script %}
 <script type='text/javascript'>
