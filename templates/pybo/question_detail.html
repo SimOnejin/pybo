@@ -59,8 +59,7 @@
                 </div>
 
 
-
-            <div class="container">
+            <div class="container justify-content-start text-left">
                 <!--추출하기, 추천 버튼-->
                 <div class="row">
                     <div class="col">
@@ -72,7 +71,7 @@
                 </div>
 
                 <div class="row" style="margin-bottom:-20px;">
-                     <div class="col my-3 justify-content-start" style="width:50%; margin-left:-30px;">
+                     <div class="col my-3 justify-content-start" style="width:50%;">
                         <a href="javascript:void(0)" data-uri="{% url 'pybo:question_vote' question.id  %}"
                            class="recommend btn btn-sm btn-outline-secondary"> 추천
                             <span class="badge rounded-pill bg-success">{{question.voter.count}}</span>
