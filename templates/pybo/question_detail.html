@@ -38,7 +38,7 @@
             <div class="container">
                 <!--추출하기, 추천 버튼-->
                 <div class="row">
-                    <div class="col" style="width:50%; margin-right:10px;">
+                    <div class="col">
                         <form method="post" action="{% url 'pybo:ocrTest' question.id %}">
                         {% csrf_token %}
                         <input type="submit" class="btn btn-sm btn-outline-secondary" value="이미지 단어 추출하기">
@@ -47,7 +47,7 @@
                 </div>
 
                 <div class="row">
-                     <div class="col my-3 justify-content-start" style="width:50%; margin-left:-12px;">
+                     <div class="col my-3 justify-content-start" style="width:50%; margin-left:-20px;">
                         <a href="javascript:void(0)" data-uri="{% url 'pybo:question_vote' question.id  %}"
                            class="recommend btn btn-sm btn-outline-secondary"> 추천
                             <span class="badge rounded-pill bg-success">{{question.voter.count}}</span>
