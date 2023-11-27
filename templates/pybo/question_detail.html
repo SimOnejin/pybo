@@ -26,14 +26,14 @@
             <div class="justify-content-center" style="width:100%">
                 {% if question.modify_date %}
                     <div class="row badge bg-light text-dark p-2 text-start mx-3" style="width:100%">
-                        <div class="col mb-4 text-align-left">modified at</div>
-                        <div class="col mb-2 text-align-right">{{ question.modify_date }}</div>
+                        <div class="col mb-4 text-align-left" style="width:50%">modified at</div>
+                        <div class="col mb-2 text-align-right" style="width:50%">{{ question.modify_date }}</div>
                     </div>
                 {% endif %}
 
                 <div class="row badge bg-light text-dark p-2 text-start" style="width:100%">
-                    <div class="col mb-2 text-align-left">{{ question.author.username }}</div>
-                    <div class="col mb-2 text-align-right">{{ question.create_date }}</div>
+                    <div class="col mb-2 text-align-left" style="width:50%">{{ question.author.username }}</div>
+                    <div class="col mb-2 text-align-right" style="width:50%">{{ question.create_date }}</div>
                 </div>
             </div>
 
