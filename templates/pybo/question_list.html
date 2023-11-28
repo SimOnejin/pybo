@@ -64,8 +64,9 @@
                 </select>
             </form>
         </div>
+        <form action="{% url 'index' %}" method="get" id="search_kw" style="margin-bottom:5%">
         <div class="col-4 input-group" style="width:75%; height:80%">
-            <form action="{% url 'index' %}" method="get" id="kw" style="margin-bottom:5%">
+
             <input type="text" id="search_kw" class="form-control" value="{{ kw|default_if_none:'' }}">
                 <div class="input-group-append">
                     <button class="btn btn-outline-secondary font" type="button" id="btn_search" style="background-color: #007BFF; color: white;">
@@ -75,8 +76,9 @@
                         </svg>
                     </button>
                 </div>
-                </form>
+
         </div>
+            </form>
     </div>
     <table class="table">
         <thead>
@@ -163,6 +165,15 @@
     <input type="hidden" id="page" name="page" value="{{ page }}">
     <input type="hidden" id="sort_by" name="sort_by" value="{{ sort_by }}">
 </form>
+
+
+<div class="container-fluid" style="background-color:#0d6efd; margin-top:30px;">
+  <div class="row">
+    <div class="col">
+      링크연결
+    </div>
+  </div>
+</div>
 
 {% endblock %}
 {% block script %}
