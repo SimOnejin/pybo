@@ -1,12 +1,17 @@
 {% extends "base.html" %}
 {% block content %}
+<div class="font">
+<a onclick="history.back()" class="btn text-primary" style="float: left; text-style:bold; margin-top: 18px; margin-right:10px; width:40px;">
+    <h2><</h2>
+</a>
+</div>
 <div class="container my-3 font">
     <form method="post" action="{% url 'common:signup' %}">
         {% csrf_token %}
         {% include "form_errors.html" %}
         <div class="mb-3" style="margin-top:4%;">
-            <div class="col-4" style="margin-left:-4%; margin-top:7%; margin-bottom:10%">
-                <h4>회원가입</h4>
+            <div class="col-4" style="margin-left:5%; margin-top:7%; margin-bottom:10%">
+                <h5 style="margin-top:30px;">회원가입</h5>
             </div>
             <label for="username">사용자 이름</label>
             <input type="text" class="form-control" name="username" id="username"
