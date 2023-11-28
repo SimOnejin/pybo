@@ -12,6 +12,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from pybo.forms import VocaForm
 from pybo.models import Voca
+from pybo.models import VocaList
 
 from ..models import Question
 from ..models import Article
@@ -189,16 +190,29 @@ def upload_image(request):
         form = UserImageForm()
     return render(request, 'pybo/ocr.html', {'form': form})
 
-
+@login_required(login_url='common:login')
 def shuffle(request):
     # URL 매개변수에서 matchedPairs 가져오기
     content = request.GET.get('content', '')
     matched_pairs_json = request.GET.get('matchedPairs', '[]')
 
-    print(matched_pairs_json)
+    vocaList = VocaList(matched_pairs_json.text)
 
     # JSON 형식의 문자열을 파이썬 리스트로 변환
     matched_pairs = json.loads(matched_pairs_json)
+
+    user_id = request.user
+
+    #리스트 저장
+    for pair in matched_pairs:
+        vocaList = VocaList(
+            user_id=user_id,
+            voca_japan=pair.text,
+            voca_korea=pair.translate,
+            voca_class=content
+        )
+        vocaList.save()
+
     random.shuffle(matched_pairs)
 
     # matchedPairs를 템플릿에 전달

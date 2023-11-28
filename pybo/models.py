@@ -97,6 +97,7 @@ class VocaList:
         cursor.execute(query)
 
     def save(self):
+        cursor = connection.cursor()
         query = ("INSERT INTO `" + self.user_id + "_voca` "
                  + "(voca_japan, voca_korea, voca_class) values ("
                  + "'" + self.voca_japan + "', "
