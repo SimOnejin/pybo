@@ -15,7 +15,7 @@
         <div class="row justify-content-start" style="margin-top:10px;">
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
-                <div class="my-3" style="margin-top:40px;">  <!--margin-left:38px; -->
+                <div style="margin-top:40px;">  <!--margin-left:38px; -->
                     {{ form.as_p }}
                 </div>
                 {%if form.errors %}
