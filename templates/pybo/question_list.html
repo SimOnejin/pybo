@@ -156,11 +156,11 @@
     <!-- 페이징처리 끝 -->
     <a href="{% url 'pybo:question_create' %}" class="btn btn-primary">질문 등록하기</a>
 </div>
-<!--<form id="searchForm" method="get" action="{% url 'index' %}">-->
-<!--    <input type="hidden" id="kw" name="kw" value="{{ kw|default_if_none:'' }}">-->
-<!--    <input type="hidden" id="page" name="page" value="{{ page }}">-->
-<!--    <input type="hidden" id="sort_by" name="sort_by" value="{{ sort_by }}">-->
-<!--</form>-->
+<form id="searchForm" method="get" action="{% url 'index' %}">
+    <input type="hidden" id="kw" name="kw" value="{{ kw|default_if_none:'' }}">
+    <input type="hidden" id="page" name="page" value="{{ page }}">
+    <input type="hidden" id="sort_by" name="sort_by" value="{{ sort_by }}">
+</form>
 
 
 <div class="container-fluid" style="background-color:#0d6efd; margin-top:30px;">
