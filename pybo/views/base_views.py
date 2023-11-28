@@ -192,19 +192,23 @@ def upload_image(request):
 
 @login_required(login_url='common:login')
 def shuffle(request):
+
     # URL 매개변수에서 matchedPairs 가져오기
     content = request.GET.get('content', '')
     matched_pairs_json = request.GET.get('matchedPairs', '[]')
 
-    vocaList = VocaList(matched_pairs_json.text)
+
 
     # JSON 형식의 문자열을 파이썬 리스트로 변환
     matched_pairs = json.loads(matched_pairs_json)
 
     user_id = request.user
 
+    # print(user_id)
+
     #리스트 저장
     for pair in matched_pairs:
+        # print(content)
         vocaList = VocaList(
             user_id=user_id,
             voca_japan=pair.text,
