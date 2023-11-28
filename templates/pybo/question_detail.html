@@ -52,7 +52,9 @@
                 <!-- 부모 요소 추가 -->
                 <div class="col-12">
                     <!--이미지 불러오기-->
+                    {% if question.image %}
                     <img class="d-block mx-auto text-center" src="../media/{{ question.image }}" style="width:100%;">
+                    {% endif %}
                     {% if texts %}
                         {% for item in texts %}
                             <div>
@@ -69,7 +71,9 @@
                 <div class="col" style="margin-bottom:-10px; margin-top:-15px;">
                     <form method="post" action="{% url 'pybo:ocrTest' question.id %}" style="margin-bottom:-10px; margin-top:10px;">
                         {% csrf_token %}
+                        {% if question.image %}
                         <input type="submit" class="btn btn-sm btn-outline-primary mb-3" value="이미지 단어 추출하기">
+                        {% endif %}
                     </form>
                 </div>
             </div>
