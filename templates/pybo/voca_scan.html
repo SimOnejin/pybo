@@ -8,7 +8,7 @@
     <h6 class="my-3 border-bottom pb-2 text-left" style="margin-left:10%; margin-right:10%; margin-top:-10px;">번역할 사진을 등록해주세요</h6>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <div style="text-size: 15; margin-left: 38px; width:100%; margin-top:40px; width:80%">  <!--margin-left:38px; -->
+        <div style="text-size: 15px; margin-left: 38px; width:100%; margin-top:40px; width:80%">  <!--margin-left:38px; -->
             {{ form.as_p }}
         </div>
         {%if form.errors %}
