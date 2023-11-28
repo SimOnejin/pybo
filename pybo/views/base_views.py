@@ -208,11 +208,12 @@ def shuffle(request):
 
     #리스트 저장
     for pair in matched_pairs:
-        # print(content)
+        print(pair["text"])
+        print(pair["translate"])
         vocaList = VocaList(
             user_id=user_id,
-            voca_japan=pair.text,
-            voca_korea=pair.translate,
+            voca_japan=pair["text"],
+            voca_korea=pair["translate"],
             voca_class=content
         )
         vocaList.save()
