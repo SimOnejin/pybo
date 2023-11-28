@@ -14,6 +14,8 @@ from pybo.forms import VocaForm
 from pybo.models import Voca
 from pybo.models import VocaList
 
+from django.utils.encoding import force_str
+
 from ..models import Question
 from ..models import Article
 
@@ -210,8 +212,9 @@ def shuffle(request):
     for pair in matched_pairs:
         print(pair["text"])
         print(pair["translate"])
+        print(str(user_id))
         vocaList = VocaList(
-            user_id=user_id,
+            user_id=str(user_id),
             voca_japan=pair["text"],
             voca_korea=pair["translate"],
             voca_class=content
