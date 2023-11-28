@@ -112,9 +112,6 @@ def ocrTest(request, question_id):
     # 문구 추가
     new_image_path = file_path + '_lined' + file_extension
 
-
-
-
     translator = Translator()
     trans = []
     for i in texts:
@@ -129,12 +126,11 @@ def ocrTest(request, question_id):
 
     combined_list = list(zip(texts, trans))
 
-
-
-
     # texts = Nice(image_url)
     context = {'texts':texts, 'combined_list': combined_list, 'image':new_image_path}
     return render(request, 'pybo/ocr.html', context)
+
+
 def ocrTest1(request, voca_id):
     # request.session['texts'] = []
     global texts, new_image_path
@@ -198,6 +194,8 @@ def shuffle(request):
     # URL 매개변수에서 matchedPairs 가져오기
     content = request.GET.get('content', '')
     matched_pairs_json = request.GET.get('matchedPairs', '[]')
+
+    print(matched_pairs_json)
 
     # JSON 형식의 문자열을 파이썬 리스트로 변환
     matched_pairs = json.loads(matched_pairs_json)
