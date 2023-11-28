@@ -6,32 +6,34 @@
     </a>
     <h5 class="my-3 pb-2 text-left" style="margin-left:10%;">사진등록</h5>
 
-    <div class="row" style="width:88%">
-        <h6 class="border-bottom pb-2 text-left" style="margin-left:10%; margin-right:10%; margin-top:-10px;">번역할 사진을 등록해주세요</h6>
-    </div>
-    <div class="row justify-content-start" style="margin-top:10px;">
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            <div class="my-3" style="margin-top:40px;">  <!--margin-left:38px; -->
-                {{ form.as_p }}
-            </div>
-            {%if form.errors %}
-            <div class="alert alert-danger" role="alert">
-                {% for field in form %}
-                {%if field.errors %}
-                <div>
-                    <strong>{{ field.label }}</strong>
-                    {{ field.errors }}
+    <div style="margin-left:10%; margin-right:10%; width:90%">
+        <div class="row">
+            <h6 class="border-bottom pb-2 text-left" style=" margin-top:-10px;">번역할 사진을 등록해주세요</h6>
+        </div>
+        <div class="row justify-content-start" style="margin-top:10px;">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="my-3" style="margin-top:40px;">  <!--margin-left:38px; -->
+                    {{ form.as_p }}
+                </div>
+                {%if form.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {% for field in form %}
+                    {%if field.errors %}
+                    <div>
+                        <strong>{{ field.label }}</strong>
+                        {{ field.errors }}
+                    </div>
+                    {% endif %}
+                    {% endfor %}
                 </div>
                 {% endif %}
-                {% endfor %}
-            </div>
-            {% endif %}
 
-            <div class="text-center">
-                <button type="submit" class="btn btn-outline-primary" style="margin-top:10%; width:40%; height:40px;">저장하기</button>
-            </div>
-        </form>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-outline-primary" style="margin-top:10%; width:40%; height:40px;">저장하기</button>
+                </div>
+            </form>
+        </div>
     </div>
 
 </div>
