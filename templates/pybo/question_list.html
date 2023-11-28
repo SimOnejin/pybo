@@ -65,7 +65,7 @@
             </form>
         </div>
         <div class="col-4 input-group" style="width:75%; height:80%">
-            <form id="searchForm" method="get" action="{% url 'index' %}">
+            <form id="search_kw" method="get" action="{% url 'index' %}">
             <input type="text" id="search_kw" class="form-control" value="{{ kw|default_if_none:'' }}">
             </form>
                 <div class="input-group-append">
