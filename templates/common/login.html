@@ -1,8 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
-<a onclick="history.back()" class="btn text-primary font" style="float: left; text-style:bold; margin-top: 18px; margin-right:10px; width:40px;">
+<div class="font">
+<a onclick="history.back()" class="btn text-primary" style="float: left; text-style:bold; margin-top: 18px; margin-right:10px; width:40px;">
     <h2><</h2>
 </a>
+</div>
 <div class="container my-3 font">
     <form method="post" action="{% url 'common:login' %}">
         {% csrf_token %}
