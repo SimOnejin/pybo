@@ -67,7 +67,6 @@
         <div class="col-4 input-group" style="width:75%; height:80%">
             <form id="search_kw" method="get" action="{% url 'index' %}">
             <input type="text" id="search_kw" class="form-control" value="{{ kw|default_if_none:'' }}">
-            </form>
                 <div class="input-group-append">
                     <button class="btn btn-outline-secondary font" type="button" id="btn_search" style="background-color: #007BFF; color: white;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16" style="margin-bottom:3px;">
@@ -76,6 +75,7 @@
                         </svg>
                     </button>
                 </div>
+            </form>
         </div>
     </div>
     <table class="table">
