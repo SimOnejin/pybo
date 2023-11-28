@@ -116,6 +116,9 @@
         {% endif %}
         </tbody>
     </table>
+
+    <a href="{% url 'pybo:question_create' %}" class="btn btn-primary">질문 등록하기</a>
+
     <!-- 페이징처리 시작 -->
     <ul class="pagination justify-content-center font">
         <!-- 이전페이지 -->
@@ -154,7 +157,7 @@
         {% endif %}
     </ul>
     <!-- 페이징처리 끝 -->
-    <a href="{% url 'pybo:question_create' %}" class="btn btn-primary">질문 등록하기</a>
+
 </div>
 <form id="searchForm" method="get" action="{% url 'index' %}">
     <input type="hidden" id="kw" name="kw" value="{{ kw|default_if_none:'' }}">
