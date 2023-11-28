@@ -1,3 +1,27 @@
+<style>
+    .nav-link {
+        position: relative;
+        text-decoration: none;
+        color: white;
+    }
+
+    .nav-link::before {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 50%;
+        background-color: white;
+        transition: width 0.3s ease-in-out;
+    }
+
+    .nav-link:hover::before {
+        width: 100%;
+        left: 0;
+    }
+</style>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
