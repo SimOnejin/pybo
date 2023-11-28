@@ -100,9 +100,9 @@ class VocaList:
         cursor = connection.cursor()
         query = ("INSERT INTO " + self.user_id + "_voca "
                  + "(voca_japan, voca_korea, voca_class) values ("
-                 + self.voca_japan + ", "
-                 + self.voca_korea + ", "
-                 + self.voca_class
+                 + '"' + self.voca_japan + '", '
+                 + '"' + self.voca_korea + '", '
+                 + '"' + self.voca_class + '"'
                  + ")")
         cursor.execute(query)
 
