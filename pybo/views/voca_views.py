@@ -65,7 +65,7 @@ def vocaTest(request):
     user_id = request.user
     voca = Voca
     print("출력0")
-    vocaList = voca.objects.raw("SELECT voca_idx, voca_japan, voca_korea FROM {}_voca".format(user_id))
+    vocaList = voca.objects.raw("SELECT * FROM {}_voca".format(user_id))
     for item in vocaList:
         print("출력1", item.voca_idx, item.voca_japan, item.voca_korea)
 
