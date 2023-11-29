@@ -55,11 +55,12 @@ def voca_save(request):
 
 
 @login_required(login_url='common:login')
-def vocaTest1(request):
+def vocaTest(request):
     user_id = request.user
-    voca = VocaList()
-    vocaList = voca.select()
+    voca_list = VocaList()
+    vocaList = voca_list.select(voca_class='f')
     random.shuffle(vocaList)
+
 
 
     # 정답과 오답 자리를 섞기위한 리스트생성
@@ -108,7 +109,7 @@ def vocaTest1(request):
 
 
 @login_required(login_url='common:login')
-def vocaTest(request):
+def vocaTest1(request):
     user_id = request.user
     voca = VocaList
     vocaList = VocaList.raw("select * from " + str(user_id) + "_voca where voca_class='f'")

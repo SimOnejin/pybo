@@ -96,11 +96,11 @@ class VocaList:
         )
         cursor.execute(query)
 
-    def select(self):
-        cursor = connection.cursor()
-        query = "select * from " + self.user_id + "_voca"
-        cursor.execute(query)
-        return cursor.fetchall()
+    def select(self, voca_class):
+        query = "SELECT * FROM {}_voca WHERE voca_class='{}'".format(self.user_id, voca_class)
+        with connection.cursor() as cursor:
+            cursor.execute(query)
+            return cursor.fetchall()
 
     def save(self):
         cursor = connection.cursor()
