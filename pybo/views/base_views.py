@@ -31,7 +31,7 @@ def index(request):
     """
     logger.info("INFO 레벨로 출력")
 
-    # 입력 파라미터
+    # 입력 파라미터.
     page = request.GET.get('page', '1')  # 페이지
     kw = request.GET.get('kw', '')  # 검색어
     sort_by = request.GET.get('sort_by', 'recent')  # 정렬기준
