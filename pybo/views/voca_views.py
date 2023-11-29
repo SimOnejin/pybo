@@ -61,7 +61,8 @@ def vocaTest(request):
     vocaList = voca_list.select(user_id=str(user_id), voca_class='f')
     random.shuffle(vocaList)
 
-
+    for item in vocaList:
+        print(item)
 
     # 정답과 오답 자리를 섞기위한 리스트생성
     randomPosition = []
