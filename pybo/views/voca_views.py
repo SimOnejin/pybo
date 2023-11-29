@@ -50,18 +50,65 @@ def voca_save(request):
         )
         vocaList.save()
 
-    random.shuffle(matched_pairs)
-
-    # matchedPairs를 템플릿에 전달
-    context = {'combined_list': matched_pairs, "content": content}
-
     # 템플릿 렌더링
-    return render(request, 'pybo/voca_save_success.html', context)
-
+    return render(request, 'pybo/voca_save_success.html')
 
 
 @login_required(login_url='common:login')
 def vocaTest(request):
+    user_id = request.user
+    voca = VocaList
+    vocaList = voca.select()
+    random.shuffle(vocaList)
+
+
+    # 정답과 오답 자리를 섞기위한 리스트생성
+    randomPosition = []
+    for i in range(len(vocaList)):
+        ranList = [0,1,2,3]
+        random.shuffle(ranList)
+        randomPosition.append(ranList)
+
+
+    # 정답과 함께 출력할 오답의 리스트 생성 - 0번 인덱스가 정답 1~3번 인덱스가 오답
+    randAnswer = []
+    for i in range(len(vocaList)):
+        answers = []
+        answers.append(i)
+        for j in range(1, 4):
+            while (True):
+                answer = random.randrange(len(vocaList))
+
+                dupChk = True
+                for k in range(0, j):
+                    if (answers[k] == answer):
+                        dupChk = False
+                        break
+
+                if (dupChk):
+                    answers.append(answer)
+                    break
+
+        for j in range(4):
+            answers[j] = vocaList[answers[j]]["voca_korea"]
+
+        randAnswer.append(answers)
+
+    # vocaList = 단어장, randomPosition = 정답 위치, randAnswer = 선택지
+    datas = {"vocaList": vocaList,
+             "randomPosition": randomPosition,
+             "randAnswer": randAnswer}
+
+    return render(request, 'pybo/voca_test.html', datas)
+
+
+
+
+
+
+
+@login_required(login_url='common:login')
+def vocaTest1(request):
     user_id = request.user
     voca = Voca
     vocaList = voca.objects.raw("select * from " + str(user_id) + "_voca")

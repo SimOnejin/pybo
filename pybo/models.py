@@ -96,6 +96,12 @@ class VocaList:
         )
         cursor.execute(query)
 
+    def select(self):
+        cursor = connection.cursor()
+        query = ("select * from " + self.user_id + "_voca")
+        return query
+        cursor.execute(query)
+
     def save(self):
         cursor = connection.cursor()
         query = ("INSERT INTO " + self.user_id + "_voca "
