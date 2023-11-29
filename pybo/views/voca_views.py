@@ -63,20 +63,23 @@ def voca_save(request):
 @login_required(login_url='common:login')
 def vocaTest(request):
     user_id = request.user
-
     voca = Voca
-    vocaList = voca.objects.raw("select voca_japan,voca_korea from " + str(user_id) + "_voca")
+    print("출력0")
+    vocaList = voca.objects.raw("SELECT voca_idx, voca_japan, voca_korea FROM {}_voca".format(user_id))
+    for item in vocaList:
+        print("출력1", item.voca_idx, item.voca_japan, item.voca_korea)
     # vocaList = [{'voca_japan' : 'あ', 'voca_korea' : '아'},
     #             {'voca_japan' : 'い', 'voca_korea' : '이'},
     #             {'voca_japan' : 'う', 'voca_korea' : '우'},
     #             {'voca_japan' : 'え', 'voca_korea' : '에'},
     #             {'voca_japan' : 'お', 'voca_korea' : '오'}]
     random.shuffle(vocaList)
-
+    print("출력2")
 
     # 정답과 오답 자리를 섞기위한 리스트생성
     randomPosition = []
     for i in range(len(vocaList)):
+        print("출력3"+ vocaList[i])
         ranList = [0,1,2,3]
         random.shuffle(ranList)
         randomPosition.append(ranList)
