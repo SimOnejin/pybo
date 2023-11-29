@@ -51,7 +51,7 @@ urlpatterns = [
 
     path('ocr/<int:question_id>/',
          base_views.ocrTest, name='ocrTest'),
-    path('ocr_lists/', base_views.shuffle, name='shuffle'),
+    path('ocr_lists/', base_views.voca_save, name='voca_save'),
     path('trans/', base_views.translate, name='translate'),
     path('t', base_views.session_reset, name='session_reset'),
 

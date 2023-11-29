@@ -193,13 +193,10 @@ def upload_image(request):
     return render(request, 'pybo/ocr.html', {'form': form})
 
 @login_required(login_url='common:login')
-def shuffle(request):
-
+def voca_save(request):
     # URL 매개변수에서 matchedPairs 가져오기
     content = request.GET.get('content', '')
     matched_pairs_json = request.GET.get('matchedPairs', '[]')
-
-
 
     # JSON 형식의 문자열을 파이썬 리스트로 변환
     matched_pairs = json.loads(matched_pairs_json)
@@ -227,7 +224,7 @@ def shuffle(request):
     context = {'combined_list': matched_pairs, "content": content}
 
     # 템플릿 렌더링
-    return render(request, 'pybo/ocr_lists.html', context)
+    return render(request, 'pybo/voca_save_success.html', context)
 def shuffle1(request):
     # 리스트의 순서를 랜덤하게 섞음
     # random.shuffle(texts)
