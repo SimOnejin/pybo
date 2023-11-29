@@ -161,10 +161,11 @@ LOGGING = {
             'format': '[{server_time}] {message}',
             'style': '{',
         },
+        'standard': {
+            'format': '%(asctime)s [%(levelname)s] %(name)s: %(message)s'
+        },
     },
-    'standard': {
-        'format': '%(asctime)s [%(levelname)s] %(name)s: %(message)s'
-    },
+
     'handlers': {
         'console': {
             'level': 'INFO',
