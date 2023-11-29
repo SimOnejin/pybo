@@ -59,35 +59,19 @@ def voca_save(request):
     return render(request, 'pybo/voca_save_success.html', context)
 
 
-#vocaList = voca.objects.raw("select voca_idx,voca_japan,voca_korea from " + str(user_id) + "_voca")
+
 @login_required(login_url='common:login')
 def vocaTest(request):
-    user_id = request.user
-    voca = Voca
-    print("출력0")
-    vocaList = voca.objects.raw("SELECT * FROM {}_voca".format(user_id))
-
-    # vocaList = 단어장, randomPosition = 정답 위치, randAnswer = 선택지
-    datas = {"combined_list": vocaList}
-
-    return render(request, 'pybo/ocr_lists.html', datas)
-
-
-
-
-
-
-@login_required(login_url='common:login')
-def vocaTest1(request):
-    user_id = request.user
-    voca = Voca
-    print("출력0")
-    vocaList = voca.objects.raw("SELECT * FROM {}_voca".format(user_id))
-    for item in vocaList:
-        print("출력1", item.voca_idx, item.voca_japan, item.voca_korea)
-
+    # user_id = request.user
+    # voca = Voca
+    # vocaList = voca.objects.raw("select * from " + str(user_id) + "_voca")
+    vocaList = [{'voca_japan' : 'あ', 'voca_korea' : '아'},
+                {'voca_japan' : 'い', 'voca_korea' : '이'},
+                {'voca_japan' : 'う', 'voca_korea' : '우'},
+                {'voca_japan' : 'え', 'voca_korea' : '에'},
+                {'voca_japan' : 'お', 'voca_korea' : '오'}]
     random.shuffle(vocaList)
-    print("출력2")
+
 
     # 정답과 오답 자리를 섞기위한 리스트생성
     randomPosition = []
@@ -127,3 +111,4 @@ def vocaTest1(request):
              "randAnswer": randAnswer}
 
     return render(request, 'pybo/voca_test.html', datas)
+

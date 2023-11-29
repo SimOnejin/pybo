@@ -37,6 +37,7 @@
 <!--            {% endif %}-->
 <!--        </div>-->
     <div style="margin-bottom:5%;">
+        <a href="{% url 'pybo:shuffle' %}" style="width: 100%" class="btn btn-outline-primary float-right">단어섞기</a>
     </div>
 
     <table border="1px">
@@ -62,14 +63,14 @@
             {% for pair in combined_list %}
             <tr>
                 <td>
-                    {{pair.voca_idx}}
+                    {{ forloop.counter }}
                 </td>
                 <td>
-                    <div class="elementToToggle_ja">{{pair.voca_japan}}</div>
+                    <div class="elementToToggle_ja">{{pair.text}}</div>
                 </td>
                 <td>
 <!--                    <div class="elementToToggle_ko hidden">{{ pair.translation }}</div>-->
-                    <div class="elementToToggle_ko hidden">{{ pair.voca_korea }}</div>
+                    <div class="elementToToggle_ko hidden">{{ pair.translate }}</div>
                 </td>
             </tr>
         </tbody>
