@@ -91,7 +91,8 @@ def vocaTest(request):
                     break
 
         for j in range(4):
-            answers[j] = vocaList[answers[j]]["voca_korea"]
+            answer_index = answers[j]
+            answers[j] = vocaList[answer_index]["voca_korea"]
 
         randAnswer.append(answers)
 
