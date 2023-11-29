@@ -98,9 +98,9 @@ class VocaList:
 
     def select(self):
         cursor = connection.cursor()
-        query = ("select * from " + self.user_id + "_voca")
-        return query
+        query = "select * from " + self.user_id + "_voca"
         cursor.execute(query)
+        return cursor.fetchall()
 
     def save(self):
         cursor = connection.cursor()
@@ -129,10 +129,12 @@ class VocaList:
                 return data_list
             return wrapper
 
+        @classmethod
         @decorator
-        def raw(query):
-            cursor.execute(query)
-            return cursor.fetchall()
+        def raw(cls, cursor, query):
+            with connection.cursor() as cursor:
+                cursor.execute(query)
+                return cursor.fetchall()
 
 
 

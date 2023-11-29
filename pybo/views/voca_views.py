@@ -56,7 +56,7 @@ def voca_save(request):
 @login_required(login_url='common:login')
 def vocaTest(request):
     user_id = request.user
-    voca = VocaList
+    voca = VocaList()
     vocaList = voca.select()
     random.shuffle(vocaList)
 
