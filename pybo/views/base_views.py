@@ -22,11 +22,15 @@ from ..models import Article
 from ..ocr import Nice
 from ..forms import UserImageForm
 
+import logging
+logger = logging.getLogger('pybo')
 
 def index(request):
     """
     pybo 목록 출력
     """
+    logger.info("INFO 레벨로 출력")
+
     # 입력 파라미터
     page = request.GET.get('page', '1')  # 페이지
     kw = request.GET.get('kw', '')  # 검색어
