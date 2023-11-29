@@ -110,7 +110,7 @@ def vocaTest1(request):
 @login_required(login_url='common:login')
 def vocaTest(request):
     user_id = request.user
-    voca = Voca
+    voca = VocaList
     vocaList = voca.objects.raw("select * from " + str(user_id) + "_voca where voca_class='f'")
     # vocaList = [{'voca_japan': 'あ', 'voca_korea': '아'},
     #             {'voca_japan': 'い', 'voca_korea': '이'},
