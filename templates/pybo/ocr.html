@@ -32,7 +32,7 @@
             <div class="col text-center" style="width:50%;">
                 <div class="d-flex justify-content-end align-items-center">
                     <button onclick="summitBtn()" class="btn btn-outline-primary" style="width: 70%; margin-right: 17%;">등록하기</button>
-<!--                    <a href="{% url 'pybo:shuffle' %}" class="btn btn-outline-primary" style="width: 70%; margin-right: 17%;">Summit</a>-->
+<!--                    <a href="{% url 'pybo:voca_save' %}" class="btn btn-outline-primary" style="width: 70%; margin-right: 17%;">Summit</a>-->
                 </div>
             </div>
         </div>
@@ -84,7 +84,7 @@
 
         let content = prompt("단어장 제목을 지정해주세요.");
 
-        window.location.href = '{% url 'pybo:shuffle' %}?content=' + encodeURIComponent(content) + '&matchedPairs=' + encodeURIComponent(JSON.stringify(matchedPairs));
+        window.location.href = '{% url 'pybo:voca_save' %}?content=' + encodeURIComponent(content) + '&matchedPairs=' + encodeURIComponent(JSON.stringify(matchedPairs));
     }
 </script>
 
