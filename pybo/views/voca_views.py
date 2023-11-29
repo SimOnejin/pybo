@@ -111,7 +111,7 @@ def vocaTest1(request):
 def vocaTest(request):
     user_id = request.user
     voca = Voca
-    vocaList = voca.objects.raw("select * from " + str(user_id) + "_voca")
+    vocaList = voca.objects.raw("select * from " + str(user_id) + "_voca where voca_class='f'")
     # vocaList = [{'voca_japan': 'あ', 'voca_korea': '아'},
     #             {'voca_japan': 'い', 'voca_korea': '이'},
     #             {'voca_japan': 'う', 'voca_korea': '우'},
