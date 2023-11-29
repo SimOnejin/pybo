@@ -59,9 +59,26 @@ def voca_save(request):
     return render(request, 'pybo/voca_save_success.html', context)
 
 
-
+#vocaList = voca.objects.raw("select voca_idx,voca_japan,voca_korea from " + str(user_id) + "_voca")
 @login_required(login_url='common:login')
 def vocaTest(request):
+    user_id = request.user
+    voca = Voca
+    print("출력0")
+    vocaList = voca.objects.raw("SELECT * FROM {}_voca".format(user_id))
+
+    # vocaList = 단어장, randomPosition = 정답 위치, randAnswer = 선택지
+    datas = {"combined_list": vocaList}
+
+    return render(request, 'pybo/ocr_lists.html', datas)
+
+
+
+
+
+
+@login_required(login_url='common:login')
+def vocaTest1(request):
     user_id = request.user
     voca = Voca
     print("출력0")
@@ -75,7 +92,6 @@ def vocaTest(request):
     # 정답과 오답 자리를 섞기위한 리스트생성
     randomPosition = []
     for i in range(len(vocaList)):
-        print("출력3"+ vocaList[i])
         ranList = [0,1,2,3]
         random.shuffle(ranList)
         randomPosition.append(ranList)
@@ -111,4 +127,3 @@ def vocaTest(request):
              "randAnswer": randAnswer}
 
     return render(request, 'pybo/voca_test.html', datas)
-
