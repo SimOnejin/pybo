@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from .views import base_views, question_views, answer_views, comment_views, vote_views
+from .views import base_views, question_views, answer_views, voca_views
 
 # 이미지를 업로드하자
 from django.conf.urls.static import static
@@ -51,7 +51,7 @@ urlpatterns = [
 
     path('ocr/<int:question_id>/',
          base_views.ocrTest, name='ocrTest'),
-    path('ocr_lists/', base_views.voca_save, name='voca_save'),
+    path('ocr_lists/', voca_views.voca_save, name='voca_save'),
     path('trans/', base_views.translate, name='translate'),
     path('t', base_views.session_reset, name='session_reset'),
 
