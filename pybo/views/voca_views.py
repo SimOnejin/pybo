@@ -12,6 +12,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from pybo.forms import VocaForm
 from pybo.models import VocaList
+from pybo.models import Voca
 
 from django.utils.encoding import force_str
 
@@ -54,7 +55,7 @@ def voca_save(request):
 
 
 @login_required(login_url='common:login')
-def vocaTest(request):
+def vocaTest1(request):
     user_id = request.user
     voca = VocaList()
     vocaList = voca.select()
@@ -107,10 +108,16 @@ def vocaTest(request):
 
 
 @login_required(login_url='common:login')
-def vocaTest1(request):
-    user_id = request.user
-    voca = Voca
-    vocaList = voca.objects.raw("select * from " + str(user_id) + "_voca")
+def vocaTest(request):
+    # user_id = request.user
+    # voca = Voca
+    # vocaList = voca.objects.raw("select * from " + str(user_id) + "_voca")
+    vocaList = [{'voca_japan': 'あ', 'voca_korea': '아'},
+                {'voca_japan': 'い', 'voca_korea': '이'},
+                {'voca_japan': 'う', 'voca_korea': '우'},
+                {'voca_japan': 'え', 'voca_korea': '에'},
+                {'voca_japan': 'お', 'voca_korea': '오'}]
+
     random.shuffle(vocaList)
 
 
