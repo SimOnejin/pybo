@@ -58,7 +58,7 @@ def voca_save(request):
 def vocaTest(request):
     user_id = request.user
     voca_list = VocaList()
-    vocaList = voca_list.select(voca_class='f')
+    vocaList = voca_list.select(user_id=str(user_id), voca_class='f')
     random.shuffle(vocaList)
 
 
