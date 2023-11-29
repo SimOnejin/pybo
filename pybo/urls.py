@@ -23,7 +23,7 @@ urlpatterns = [
          base_views.voca_detail, name='voca_detail'),
     path('ocrVoca/<int:voca_id>/',
          base_views.ocrTest1, name='ocrTest1'),
-    path('vocaTest', base_views.vocaTest, name="vocaTest"),
+    path('vocaTest', voca_views.vocaTest, name="vocaTest"),
 
 
     # question_views.py
