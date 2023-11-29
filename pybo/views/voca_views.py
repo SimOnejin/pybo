@@ -11,7 +11,6 @@ import json
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from pybo.forms import VocaForm
-from pybo.models import Voca
 from pybo.models import VocaList
 
 from django.utils.encoding import force_str
