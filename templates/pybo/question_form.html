@@ -3,37 +3,35 @@
 <div class="container font">
     <h5 class="my-3 border-bottom pb-2">질문등록</h5>
     <form method="post" enctype="multipart/form-data">
-        <div style="width:auto">
-            {% csrf_token %}
+        {% csrf_token %}
 <!--        {{ modelform }}-->
-            {{ form.as_p }}
-            {%if form.errors %}
-                <div class="alert alert-danger" role="alert">
-                    {% for field in form %}
-                    {%if field.errors %}
-                    <div>
-                        <strong>{{ field.label }}</strong>
-                        {{ field.errors }}
-                    </div>
-                    {% endif %}
-                    {% endfor %}
+        {{ form.as_p }}
+        {%if form.errors %}
+            <div class="alert alert-danger" role="alert">
+                {% for field in form %}
+                {%if field.errors %}
+                <div>
+                    <strong>{{ field.label }}</strong>
+                    {{ field.errors }}
                 </div>
-            {% endif %}
-            <!--오류표시 End-->
-    <!--        <div class="mb-3">-->
-    <!--            <label for="subject" class="for-label">제목</label>-->
-    <!--            <input type="text" class="form-control" name="subject" id="subject"-->
-    <!--                   value="{{ form.subject.value|default_if_none:'' }}">-->
-    <!--        </div>-->
-    <!--        <div class="mb-3">-->
-    <!--            <label for="content" class="form-label">내용</label>-->
-    <!--            <textarea class="form-control" name="content"-->
-    <!--                      id="content" rows="10">{{ form.content.value|default_if_none:'' }}</textarea>-->
-    <!--        </div>-->
-    <!--        <div>-->
-    <!--            <input type='file' accept="image/*" name="upload_image" id="upload_image" required>-->
-    <!--        </div>-->
-        </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
+        <!--오류표시 End-->
+<!--        <div class="mb-3">-->
+<!--            <label for="subject" class="for-label">제목</label>-->
+<!--            <input type="text" class="form-control" name="subject" id="subject"-->
+<!--                   value="{{ form.subject.value|default_if_none:'' }}">-->
+<!--        </div>-->
+<!--        <div class="mb-3">-->
+<!--            <label for="content" class="form-label">내용</label>-->
+<!--            <textarea class="form-control" name="content"-->
+<!--                      id="content" rows="10">{{ form.content.value|default_if_none:'' }}</textarea>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <input type='file' accept="image/*" name="upload_image" id="upload_image" required>-->
+<!--        </div>-->
         <div class="text-center mt-2" style="width:100%;">
             <button type="submit" class="btn btn-outline-primary mr-2">저장하기</button>
             <button type="reset" class="btn btn-outline-secondary">전체삭제</button>
