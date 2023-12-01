@@ -3,7 +3,7 @@
 <div class="container font">
     <h5 class="my-3 border-bottom pb-2">질문등록</h5>
     <form method="post" enctype="multipart/form-data">
-        <div class="justify-content-start" style="width:300px;">
+        <div class="justify-content-start" style="width:auto">
             {% csrf_token %}
 <!--        {{ modelform }}-->
         {{ form.as_p }}
