@@ -3,22 +3,22 @@
 <div class="container font">
     <h5 class="my-3 border-bottom pb-2">질문등록</h5>
     <form method="post" enctype="multipart/form-data">
-        <div class="justify-content-start" style="width:auto">
+        <div class="text-left" style="width:auto">
             {% csrf_token %}
 <!--        {{ modelform }}-->
-        {{ form.as_p }}
-        {%if form.errors %}
-        <div class="alert alert-danger" role="alert">
-            {% for field in form %}
-            {%if field.errors %}
-            <div>
-                <strong>{{ field.label }}</strong>
-                {{ field.errors }}
-            </div>
+            {{ form.as_p }}
+            {%if form.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {% for field in form %}
+                    {%if field.errors %}
+                    <div>
+                        <strong>{{ field.label }}</strong>
+                        {{ field.errors }}
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
             {% endif %}
-            {% endfor %}
-        </div>
-        {% endif %}
             <!--오류표시 End-->
     <!--        <div class="mb-3">-->
     <!--            <label for="subject" class="for-label">제목</label>-->
