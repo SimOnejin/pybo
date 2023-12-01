@@ -2,7 +2,7 @@
 {% block content %}
 <div class="container font">
     <h5 class="my-3 border-bottom pb-2">질문등록</h5>
-    <form method="post" enctype="multipart/form-data">
+    <form method="post" enctype="multipart/form-data" style="width:100%;">
         {% csrf_token %}
 <!--        {{ modelform }}-->
         {{ form.as_p }}
