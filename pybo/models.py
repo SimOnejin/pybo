@@ -81,7 +81,7 @@ class VocaList(models.Model):
     voca_class = models.CharField(max_length=100)
 
     @classmethod
-    def create_table(cls, user_id):
+    def create(cls, user_id):
         with connection.cursor() as cursor:
             query = (
                 "CREATE TABLE " + user_id + "_voca ("

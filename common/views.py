@@ -21,8 +21,10 @@ def signup(request):
             print(request.POST.get("username"))
             print("test")
 
-            vocaList = VocaList(user_id=request.POST.get("username"))
-            vocaList.create()
+            # vocaList = VocaList(user_id=request.POST.get("username"))
+            # vocaList.create()
+            vocaList = VocaList()
+            vocaList.create(user_id=request.POST.get("username"))
 
             return redirect('index')
     else:
