@@ -136,6 +136,8 @@ class VocaList:
                 cursor.execute(query)
                 return cursor.fetchall()
 
+    objects = objects()
+
 
 
 
