@@ -30,8 +30,8 @@ def signup(request):
     return render(request, 'common/signup.html', {'form': form})
 
 
-def test(requst):
-    vocaTest = VocaList(user_id="test")
+# def test(request):
+#     vocaTest = VocaList(user_id="test")
 
     # query = (
     #         "CREATE TABLE test_voca ("
@@ -47,5 +47,5 @@ def test(requst):
     # query = ("select * from pybo_voca")
     # cursor.execute(query)
 
-    vocaTest.create()
-    return HttpResponse("test")
+    # vocaTest.create()
+    # return HttpResponse("test")
