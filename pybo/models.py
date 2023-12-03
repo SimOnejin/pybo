@@ -74,69 +74,103 @@ class Article(models.Model):
 
 
 
+class VocaList(models.Model):
+    user_id = models.CharField(max_length=50)
+    voca_japan = models.CharField(max_length=20)
+    voca_korea = models.CharField(max_length=20)
+    voca_class = models.CharField(max_length=100)
 
-class VocaList:
-    voca_idx = ""
-
-    def __init__(self, user_id="", voca_japan="", voca_korea="", voca_class=""):
-        self.user_id = user_id
-        self.voca_japan = voca_japan
-        self.voca_korea = voca_korea
-        self.voca_class = voca_class
-
-    def create(self):
-        cursor = connection.cursor()
-        query = (
-                "CREATE TABLE " + self.user_id + "_voca ("
+    @classmethod
+    def create_table(cls, user_id):
+        with connection.cursor() as cursor:
+            query = (
+                "CREATE TABLE " + user_id + "_voca ("
                 + "voca_idx SERIAL NOT NULL PRIMARY KEY, "
                 + "voca_japan VARCHAR(20) NOT NULL, "
                 + "voca_korea VARCHAR(20), "
                 + "voca_class VARCHAR(100)"
                 + ")"
-        )
-        cursor.execute(query)
+            )
+            cursor.execute(query)
 
-    def select(self, user_id, voca_class):
+    @classmethod
+    def select(cls, user_id, voca_class):
         query = "SELECT * FROM {}_voca WHERE voca_class='{}'".format(user_id, voca_class)
         with connection.cursor() as cursor:
             cursor.execute(query)
             return cursor.fetchall()
 
     def save(self):
-        cursor = connection.cursor()
-        query = ("INSERT INTO " + self.user_id + "_voca "
-                 + "(voca_japan, voca_korea, voca_class) values ("
-                 + "'" + self.voca_japan + "', "
-                 + "'" + self.voca_korea + "', "
-                 + "'" + self.voca_class + "'"
-                 + ")")
-        cursor.execute(query)
-
-    class objects:
-        def decorator(func):
-            def wrapper(self, *args, **kwargs):
-                data_list = []
-
-                datas = func(self, *args, **kwargs)
-                for i in datas:
-                    d = dict()
-                    d["voca_idx"] = i[0]
-                    d["voca_japan"] = i[1]
-                    d["voca_korea"] = i[2]
-                    d["voca_class"] = i[3]
-                    data_list.append(d)
-
-                return data_list
-            return wrapper
-
-        @classmethod
-        @decorator
-        def raw(cls, cursor, query):
-            with connection.cursor() as cursor:
-                cursor.execute(query)
-                return cursor.fetchall()
-
-    objects = objects()
+        with connection.cursor() as cursor:
+            query = ("INSERT INTO " + self.user_id + "_voca "
+                     + "(voca_japan, voca_korea, voca_class) values ("
+                     + "'" + self.voca_japan + "', "
+                     + "'" + self.voca_korea + "', "
+                     + "'" + self.voca_class + "'"
+                     + ")")
+            cursor.execute(query)
+# class VocaList:
+#     voca_idx = ""
+#
+#     def __init__(self, user_id="", voca_japan="", voca_korea="", voca_class=""):
+#         self.user_id = user_id
+#         self.voca_japan = voca_japan
+#         self.voca_korea = voca_korea
+#         self.voca_class = voca_class
+#
+#     def create(self):
+#         cursor = connection.cursor()
+#         query = (
+#                 "CREATE TABLE " + self.user_id + "_voca ("
+#                 + "voca_idx SERIAL NOT NULL PRIMARY KEY, "
+#                 + "voca_japan VARCHAR(20) NOT NULL, "
+#                 + "voca_korea VARCHAR(20), "
+#                 + "voca_class VARCHAR(100)"
+#                 + ")"
+#         )
+#         cursor.execute(query)
+#
+#     def select(self, user_id, voca_class):
+#         query = "SELECT * FROM {}_voca WHERE voca_class='{}'".format(user_id, voca_class)
+#         with connection.cursor() as cursor:
+#             cursor.execute(query)
+#             return cursor.fetchall()
+#
+#     def save(self):
+#         cursor = connection.cursor()
+#         query = ("INSERT INTO " + self.user_id + "_voca "
+#                  + "(voca_japan, voca_korea, voca_class) values ("
+#                  + "'" + self.voca_japan + "', "
+#                  + "'" + self.voca_korea + "', "
+#                  + "'" + self.voca_class + "'"
+#                  + ")")
+#         cursor.execute(query)
+#
+#     class objects:
+#         def decorator(func):
+#             def wrapper(self, *args, **kwargs):
+#                 data_list = []
+#
+#                 datas = func(self, *args, **kwargs)
+#                 for i in datas:
+#                     d = dict()
+#                     d["voca_idx"] = i[0]
+#                     d["voca_japan"] = i[1]
+#                     d["voca_korea"] = i[2]
+#                     d["voca_class"] = i[3]
+#                     data_list.append(d)
+#
+#                 return data_list
+#             return wrapper
+#
+#         @classmethod
+#         @decorator
+#         def raw(cls, cursor, query):
+#             with connection.cursor() as cursor:
+#                 cursor.execute(query)
+#                 return cursor.fetchall()
+#
+#     objects = objects()
 
 
 
