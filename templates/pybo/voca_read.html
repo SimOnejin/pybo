@@ -10,10 +10,10 @@
 </head>
 <body>
 <div class="mb-3 font" style="padding: 3%; width: 100%">
-    {% for vocaList in vocaList %}
-        {{ vocaList }}
-        {{ vocaList.voca_japan }}
-        {{ vocaList.voca_korea }}
+    {% for voca in vocaList %}
+        {{ voca }}
+        {{ voca.voca_japan }}
+        {{ voca.voca_korea }}
     {% endfor %}
 
 
