@@ -108,7 +108,7 @@ def vocaTest1(request):
 
 
 def vocaTest(request):
-    vocaList = VocaList.objects.filter(id=1)
+    vocaList = VocaList.objects.all()
     context = {"vocaList" : vocaList}
     return render(request, 'pybo/voca_read.html', context)
 
