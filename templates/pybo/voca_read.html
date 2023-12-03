@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load pybo_filter %}
+{% block content %}
+<!DOCTYPE html>
+{% load static %}
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="mb-3 font" style="padding: 3%; width: 100%">
+    {% for voca in vocaList %}
+        {{ vocaList }}
+        {{ vocaList.voca_japan }}
+        {{ vocaList.voca_korea }}
+
+
+</div>
+</body>
+</html>
+
+{% endblock %}

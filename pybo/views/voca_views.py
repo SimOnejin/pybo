@@ -107,20 +107,23 @@ def vocaTest1(request):
 
 
 
-
-
+def vocaTest(request):
+    vocaList = VocaList.objects.all()
+    context = {"vocaList" = vocaList}
+    return render(request, 'pybo/voca_read.html', context)
 
 
 @login_required(login_url='common:login')
 def vocaTest(request):
+    vocaList = VocaList.objects.all()
     # user_id = request.user
     # voca = VocaList
     # vocaList = VocaList.raw("select * from " + str(user_id) + "_voca where voca_class='f'")
-    vocaList = [{'voca_japan': 'あ', 'voca_korea': '아'},
-                {'voca_japan': 'い', 'voca_korea': '이'},
-                {'voca_japan': 'う', 'voca_korea': '우'},
-                {'voca_japan': 'え', 'voca_korea': '에'},
-                {'voca_japan': 'お', 'voca_korea': '오'}]
+    # vocaList = [{'voca_japan': 'あ', 'voca_korea': '아'},
+    #             {'voca_japan': 'い', 'voca_korea': '이'},
+    #             {'voca_japan': 'う', 'voca_korea': '우'},
+    #             {'voca_japan': 'え', 'voca_korea': '에'},
+    #             {'voca_japan': 'お', 'voca_korea': '오'}]
 
     random.shuffle(vocaList)
 
