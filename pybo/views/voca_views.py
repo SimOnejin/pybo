@@ -114,7 +114,7 @@ def vocaTest(request):
 
 
 @login_required(login_url='common:login')
-def vocaTest(request):
+def vocaTest2(request):
     vocaList = VocaList.objects.all()
     # user_id = request.user
     # voca = VocaList
