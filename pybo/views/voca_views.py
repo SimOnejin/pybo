@@ -108,10 +108,8 @@ def vocaTest1(request):
 
 @login_required(login_url='common:login')
 def vocaRead(request):
-    # vocaList = VocaList.objects.all()
     user_id = request.user
-    # vocaList = VocaList.select(user_id)
-    # vocalist_class = list(vocaList).distinct()
+
     vocaList = VocaList.select(user_id)
     vocalist_class = set(item[3] for item in vocaList)
 
@@ -119,7 +117,7 @@ def vocaRead(request):
     print("vocalist_class: ", vocalist_class)
 
     if request.method == 'POST':
-
+        global selected_voca_list
         selected_voca_class = request.POST.get('voca_class')  # 드롭다운에서 선택된 값 가져오기
         print("voca_class: ", selected_voca_class)
         selected_voca_list = VocaList.select_where(user_id, selected_voca_class)
@@ -205,3 +203,7 @@ def vocaTest(request):
     return render(request, 'pybo/voca_test.html', datas)
 
 
+def shuffle(request):
+    random.shuffle(selected_voca_list)
+    context = {"selected_voca_list": selected_voca_list}
+    return render(request, 'pybo/ocr_lists.html', context)
