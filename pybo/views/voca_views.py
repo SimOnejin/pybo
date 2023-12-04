@@ -55,13 +55,10 @@ def voca_save(request):
 
 
 @login_required(login_url='common:login')
-def vocaTest(request, voca_class=None):
+def vocaTest(request):
     user_id = request.user
 
-    if voca_class is None:
-        # voca_class가 None일 때의 기본값 설정
-        voca_class = "vv"
-
+    voca_class = request.session.get('voca_class', None)
     vocaList1 = VocaList.select_where(user_id, voca_class)
     print('vocaList1: ',vocaList1)
     vocaList = []
