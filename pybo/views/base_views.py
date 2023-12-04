@@ -69,9 +69,9 @@ def detail(request, question_id):
     context = {'question': question}
     return render(request, 'pybo/question_detail.html', context)
 
-
+@login_required(login_url='common:login')
 def voca_list(request):
-    voca_list = Voca.objects.order_by('-create_date')
+    voca_list = Voca.objects.filter(author_id=request.user).order_by('-create_date')
     context = {'voca_list': voca_list}
     return render(request, 'pybo/voca_list.html', context)
 def voca_detail(request, voca_id):

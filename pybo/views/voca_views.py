@@ -132,11 +132,57 @@ def vocaRead(request):
     return render(request, 'pybo/voca_read.html', context)
 
 
-@login_required(login_url='common:login')
 def vocaTest(request):
+    # voca = Voca
+    vocaList = selected_voca_list
+
+    random.shuffle(vocaList)
+
+    # 정답과 오답 자리를 섞기 위한 리스트 생성
+    randomPosition = []
+    for i in range(len(vocaList)):
+        ranList = [0, 1, 2, 3]
+        random.shuffle(ranList)
+        randomPosition.append(ranList)
+
+    # 정답과 함께 출력할 오답의 리스트 생성 - 0번 인덱스가 정답 1~3번 인덱스가 오답
+    randAnswer = []
+    for i in range(len(vocaList)):
+        answers = []
+        answers.append(i)
+        for j in range(1, 4):
+            while True:
+                answer = random.randrange(len(vocaList))
+
+                dupChk = True
+                for k in range(0, j):
+                    if answers[k] == answer:
+                        dupChk = False
+                        break
+
+                if dupChk:
+                    answers.append(answer)
+                    break
+
+        for j in range(4):
+            answers[j] = set(item[2] for item in vocaList)
+
+        randAnswer.append(answers)
+
+    # vocaList = 단어장, randomPosition = 정답 위치, randAnswer = 선택지
+    datas = {"vocaList": vocaList,
+             "randomPosition": randomPosition,
+             "randAnswer": randAnswer}
+
+    return render(request, 'pybo/voca_test.html', datas)
+
+
+@login_required(login_url='common:login')
+def vocaTest2(request):
     user_id = request.user
-    vocaList_queryset = VocaList.select_where(user_id, "vv")  # Assuming VocaList.select returns a QuerySet
-    vocaList = list(vocaList_queryset)
+    # vocaList_queryset = VocaList.select_where(user_id, "vv")  # Assuming VocaList.select returns a QuerySet
+    # vocaList = list(vocaList_queryset)
+    vocaList = selected_voca_list
     print(vocaList)
 
     random.shuffle(vocaList)
@@ -191,7 +237,7 @@ def vocaTest(request):
                 pass
 
         # 한 글자씩 나눠진 vv 값을 합쳐서 넣기
-        vocaList[i] = "".join(vocaList[i][1]) if len(vocaList[i]) > 1 else None
+        # vocaList[i] = "".join(vocaList[i][1]) if len(vocaList[i]) > 1 else None
 
         randAnswer.append(answers)
 

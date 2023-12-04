@@ -5,6 +5,11 @@
 {% load static %}
 <html lang="ja">
 <head>
+    <div class="font">
+        <a onclick="history.back()" class="btn text-primary font" style="position: fixed; top: 61px; left: 12px; text-style: bold; width: 40px; height: 40px; line-height: 40px;">
+                <h2><</h2>
+        </a>
+    </div>
     <meta charset="UTF-8">
     <title>Title</title>
      <style>
@@ -23,10 +28,10 @@
   </style>
 </head>
 <body>
-<div class="mb-3 font" style="padding: 3%; width: 100%">
+<div class="mb-3 font" style="margin-top:9%; padding: 3%; width: 100%">
             <form action="{% url 'pybo:vocaRead' %}" method="post" style="margin-bottom:5%">
                 {% csrf_token %}
-                <select class="form-control so text-center" id="voca_class" name="voca_class" style="background-color: #78C4EB; color: white;">
+                <select class="form-control so text-center" id="voca_class" name="voca_class" style="background-color: #78C4ff; color: white;">
                     {% for voca in vocalist_class %}
                         <option value="{{ voca }}">{{ voca }}</option>
                     {% endfor %}
@@ -35,7 +40,7 @@
 
             </form>
 
-<table>
+        <table>
             <thead>
                 <tr>
                     <th style="col-1">번호</th>
@@ -56,13 +61,7 @@
                     </tr>
                 {% endfor %}
             {% else %}
-                {% for voca in vocaList %}
-                    <tr>
-                        <td>{{ forloop.counter }}</td>
-                        <td>{{ voca.1 }}</td>
-                        <td>{{ voca.2 }}</td>
-                    </tr>
-                {% endfor %}
+                <h1>드롭박스에서 선택해주세요</h1>
             {% endif %}
 
             </tbody>

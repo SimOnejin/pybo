@@ -43,11 +43,11 @@
         {% endfor %}
         {% else %}
         <tr>
-            <td colspan="3">질문이 없습니다.</td>
+            <td colspan="4">등록한 단어장이 없습니다.</td>
         </tr>
         {% endif %}
         </tbody>
     </table>
-
+<a href="{% url 'pybo:vocaRead' %}" class="btn btn-primary">등록한 단어보기</a>
 </div>
 {% endblock %}
