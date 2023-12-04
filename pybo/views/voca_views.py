@@ -124,7 +124,8 @@ def vocaRead(request):
     print("vocalist_class: ", vocalist_class)
 
     if request.method == 'POST':
-        global selected_voca_list
+        global voca_class
+        voca_class = request.POST.get('voca_class')
         selected_voca_class = request.POST.get('voca_class')  # 드롭다운에서 선택된 값 가져오기
         print("voca_class: ", selected_voca_class)
         selected_voca_list = VocaList.select_where(user_id, selected_voca_class)
@@ -132,7 +133,6 @@ def vocaRead(request):
         vocalist_class = set(item[3] for item in vocaList)
         # 선택된 voca_class에 해당하는 데이터를 가져오는 등의 작업을 수행할 수 있습니다.
         context = {"vocalist_class":vocalist_class, "selected_voca_list": selected_voca_list}
-        selected_voca_list = []
         return render(request, 'pybo/voca_read.html', context)
 
 
@@ -140,8 +140,10 @@ def vocaRead(request):
     return render(request, 'pybo/voca_read.html', context)
 
 
-
+@login_required(login_url='common:login')
 def shuffle(request):
+    user_id = request.user
+    selected_voca_list = VocaList.select_where(user_id, voca_class)
     random.shuffle(selected_voca_list)
     context = {"selected_voca_list": selected_voca_list}
     return render(request, 'pybo/ocr_lists.html', context)
