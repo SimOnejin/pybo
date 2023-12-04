@@ -55,22 +55,32 @@ def voca_save(request):
 
 
 @login_required(login_url='common:login')
-def vocaTest1(request):
+def vocaTest(request):
+    # voca = Voca
+    # vocaList = voca.objects.raw("select * from " + request.POST.get('inputId') + "_voca")
+    # vocaList = [{'voca_japan' : 'あ', 'voca_korea' : '아'},
+    #             {'voca_japan' : 'い', 'voca_korea' : '이'},
+    #             {'voca_japan' : 'う', 'voca_korea' : '우'},
+    #             {'voca_japan' : 'え', 'voca_korea' : '에'},
+    #             {'voca_japan' : 'お', 'voca_korea' : '오'}]
     user_id = request.user
-    voca_list = VocaList()
-    vocaList = voca_list.select(user_id=str(user_id), voca_class='f')
+    vocaList1 = VocaList.select(user_id)
+    print('vocaList1: ',vocaList1)
+    vocaList = []
+    # vocalist_class = set(item[3] for item in vocaList)
+    for item in vocaList1:
+        vocaListSet = {'voca_japan': item[1] , 'voca_korea': item[2] }
+        vocaList.append(vocaListSet)
+    # vocaList = [{'voca_japan': set(item['voca_japan'] for item in vocaListSet), 'voca_korea': set(item['voca_korea'] for item in vocaListSet)},]
+    print('vocaList: ',vocaList)
     random.shuffle(vocaList)
 
-    for item in vocaList:
-        print(item)
-
-    # 정답과 오답 자리를 섞기위한 리스트생성
+    # 정답과 오답 자리를 섞기 위한 리스트 생성
     randomPosition = []
     for i in range(len(vocaList)):
-        ranList = [0,1,2,3]
+        ranList = [0, 1, 2, 3]
         random.shuffle(ranList)
         randomPosition.append(ranList)
-
 
     # 정답과 함께 출력할 오답의 리스트 생성 - 0번 인덱스가 정답 1~3번 인덱스가 오답
     randAnswer = []
@@ -92,9 +102,7 @@ def vocaTest1(request):
                     break
 
         for j in range(4):
-            answer_index = int(answers[j])
-            answer_instance = vocaList[answer_index]
-            answers[j] = answer_instance.voca_korea
+            answers[j] = vocaList[answers[j]]["voca_korea"]
 
         randAnswer.append(answers)
 
@@ -104,6 +112,10 @@ def vocaTest1(request):
              "randAnswer": randAnswer}
 
     return render(request, 'pybo/voca_test.html', datas)
+
+
+def  inputId(request):
+    return render(request, 'pybo/voca_test_id.html')
 
 
 @login_required(login_url='common:login')
@@ -132,7 +144,7 @@ def vocaRead(request):
     return render(request, 'pybo/voca_read.html', context)
 
 
-def vocaTest(request):
+def vocaTest1(request):
     # voca = Voca
     vocaList = selected_voca_list
 

@@ -86,15 +86,14 @@
             var correctCount = 0;
 
 
-            {% for item in vocaList %}
-                vocaList.push({'{{ item.1 }}' : '{{ item.2 }}'});
+            {% for i in vocaList %}
+                vocaList.push({'{{ i.voca_japan }}' : '{{ i.voca_korea }}'});
             {% endfor %}
 
             {% for i in randomPosition %}
                 var temp = [];
                 {% for j in i %}
-                    console.log("j: ",{{ j }})
-                    temp.push({{ i }});
+                    temp.push({{ j }});
                 {% endfor %}
                 randomPosition.push(temp);
             {% endfor %}
@@ -102,7 +101,7 @@
             {% for i in randAnswer %}
                 var temp = [];
                 {% for j in i %}
-                    temp.push('{{ i }}');
+                    temp.push('{{ j }}');
                 {% endfor %}
                 randAnswer.push(temp);
             {% endfor %}
@@ -110,7 +109,7 @@
             console.log(vocaList);
             console.log(randomPosition);
             console.log(randAnswer);
-            document.getElementById('word').innerHTML = Object.keys(vocaList[1]);
+            document.getElementById('word').innerHTML = Object.keys(vocaList[questionCount]);
             document.getElementById('answerBtnA').innerHTML = randAnswer[questionCount][randomPosition[questionCount][0]];
             document.getElementById('answerBtnB').innerHTML = randAnswer[questionCount][randomPosition[questionCount][1]];
             document.getElementById('answerBtnC').innerHTML = randAnswer[questionCount][randomPosition[questionCount][2]];
