@@ -75,6 +75,9 @@
         <div>
             <strong id="correct"></strong>
         </div>
+        <div>
+            <strong id="incorrect"></strong>
+        </div>
 
 <!--        <a class="option" href="{% url 'pybo:index' %}">Home.</a>-->
 
@@ -84,6 +87,7 @@
             var randAnswer = [];
             var questionCount = 0;
             var correctCount = 0;
+            var incorrectedList = [];
 
 
             {% for i in vocaList %}
@@ -126,17 +130,22 @@
                         document.getElementById('answerBtnD').innerHTML = randAnswer[questionCount][randomPosition[questionCount][3]];
                     }else{
                         document.getElementById('correct').innerHTML = '점수' + (correctCount+1) + '/' + (questionCount+1);
+                        document.getElementById('incorrect').innerHTML = '오답: ' + (incorrectedList);
                     }
                 }else{
                     if(questionCount != vocaList.length-1){
                         questionCount++;
                         document.getElementById('word').innerHTML = Object.keys(vocaList[questionCount]);
+                        console.log(vocaList[questionCount-1]);
+                        incorrectedList.push(JSON.stringify(vocaList[questionCount - 1]));
+                        console.log(incorrectedList);
                         document.getElementById('answerBtnA').innerHTML = randAnswer[questionCount][randomPosition[questionCount][0]];
                         document.getElementById('answerBtnB').innerHTML = randAnswer[questionCount][randomPosition[questionCount][1]];
                         document.getElementById('answerBtnC').innerHTML = randAnswer[questionCount][randomPosition[questionCount][2]];
                         document.getElementById('answerBtnD').innerHTML = randAnswer[questionCount][randomPosition[questionCount][3]];
                     }else{
                         document.getElementById('correct').innerHTML = '점수' + (correctCount+1) + '/' + (questionCount+1);
+                        document.getElementById('incorrect').innerHTML = '오답: ' + (incorrectedList);
                     }
                 }
             }
