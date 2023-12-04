@@ -132,6 +132,7 @@ def vocaRead(request):
         vocalist_class = set(item[3] for item in vocaList)
         # 선택된 voca_class에 해당하는 데이터를 가져오는 등의 작업을 수행할 수 있습니다.
         context = {"vocalist_class":vocalist_class, "selected_voca_list": selected_voca_list}
+        selected_voca_list = []
         return render(request, 'pybo/voca_read.html', context)
 
 
