@@ -142,6 +142,7 @@ def vocaRead(request):
 
 @login_required(login_url='common:login')
 def shuffle(request):
+    selected_voca_list = []
     user_id = request.user
     selected_voca_list = VocaList.select_where(user_id, voca_class)
     random.shuffle(selected_voca_list)
