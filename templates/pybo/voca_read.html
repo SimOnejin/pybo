@@ -7,14 +7,62 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+     <style>
+ table{ border-collapse : collapse; max-width: 600px; }  /*이중선 제거*/
+ th,td{
+      width: 100px;
+
+      height: 50px;
+      text-align: center;
+      border: 1px solid #000;
+
+      vertical-align: top;	/* 위 */
+      vertical-align: bottom;   /* 아래 */
+      vertical-align: middle;   /* 가운데 */
+    }
+  </style>
 </head>
 <body>
 <div class="mb-3 font" style="padding: 3%; width: 100%">
-    {% for voca in vocaList %}
-        {{ voca }}
+            <form action="{% url 'pybo:vocaRead' %}" method="post" style="margin-bottom:5%">
+                {% csrf_token %}
+                <select class="form-control so text-center" id="voca_class" name="voca_class" style="background-color: #78C4EB; color: white;">
+                    {% for voca in vocalist_class %}
+                        <option value="{{ voca }}">{{ voca }}</option>
+                    {% endfor %}
+                </select>
+                <input type="submit" value="submit">
+            </form>
 
-    {% endfor %}
+<table>
+            <thead>
+                <tr>
+                    <th style="col-1">번호</th>
+                    <th style="width: 45%">일본어</th>
+                    <th style="width: 45%">한국어</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% if selected_voca_list %}
+                {% for voca in selected_voca_list %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ voca.1 }}</td>
+                        <td>{{ voca.2 }}</td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                {% for voca in vocaList %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ voca.1 }}</td>
+                        <td>{{ voca.2 }}</td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
 
+            </tbody>
+        </table>
 
 </div>
 </body>

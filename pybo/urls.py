@@ -24,6 +24,7 @@ urlpatterns = [
     path('ocrVoca/<int:voca_id>/',
          base_views.ocrTest1, name='ocrTest1'),
     path('vocaTest', voca_views.vocaTest, name="vocaTest"),
+    path('vocaRead', voca_views.vocaRead, name="vocaRead"),
 
 
     # question_views.py

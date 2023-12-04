@@ -94,11 +94,19 @@ class VocaList(models.Model):
             cursor.execute(query)
 
     @classmethod
-    def select(cls, user_id, voca_class):
+    def select(cls, user_id):
+        query = "SELECT * FROM {}_voca".format(user_id)
+        with connection.cursor() as cursor:
+            cursor.execute(query)
+            return cursor.fetchall()
+
+    @classmethod
+    def select_where(cls, user_id, voca_class):
         query = "SELECT * FROM {}_voca WHERE voca_class='{}'".format(user_id, voca_class)
         with connection.cursor() as cursor:
             cursor.execute(query)
             return cursor.fetchall()
+
 
     def save(self):
         with connection.cursor() as cursor:
