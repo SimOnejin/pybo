@@ -124,8 +124,8 @@ def vocaRead(request):
     print("vocalist_class: ", vocalist_class)
 
     if request.method == 'POST':
-        global voca_class
         voca_class = request.POST.get('voca_class')
+        request.session['voca_class'] = voca_class
         selected_voca_class = request.POST.get('voca_class')  # 드롭다운에서 선택된 값 가져오기
         print("voca_class: ", selected_voca_class)
         selected_voca_list = VocaList.select_where(user_id, selected_voca_class)
@@ -142,8 +142,8 @@ def vocaRead(request):
 
 @login_required(login_url='common:login')
 def shuffle(request):
-    selected_voca_list = []
     user_id = request.user
+    voca_class = request.session.get('voca_class', None)
     selected_voca_list = VocaList.select_where(user_id, voca_class)
     random.shuffle(selected_voca_list)
     context = {"selected_voca_list": selected_voca_list}
