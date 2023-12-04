@@ -23,7 +23,8 @@ urlpatterns = [
          base_views.voca_detail, name='voca_detail'),
     path('ocrVoca/<int:voca_id>/',
          base_views.ocrTest1, name='ocrTest1'),
-    path('vocaTest', voca_views.vocaTest, name="vocaTest"),
+    path('vocaTest/', voca_views.vocaTest, name='vocaTest'),
+    path('vocaTest/<str:voca_class>/', voca_views.vocaTest, name='vocaTest'),
     path('vocaRead', voca_views.vocaRead, name="vocaRead"),
     path('voca/shuffle', voca_views.shuffle, name="shuffle"),
 

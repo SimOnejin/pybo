@@ -33,7 +33,7 @@
                 {% csrf_token %}
                 <select class="form-control so text-center" id="voca_class" name="voca_class" style="background-color: #78C4ff; color: white;">
                     {% for voca in vocalist_class %}
-                        <option value="{{ voca }}">{{ voca }}</option>
+                        <option value="{{ voca }}" {% if forloop.first %}selected{% endif %}>{{ voca }}</option>
                     {% endfor %}
                 </select>
                 <input type="submit" value="submit" class="btn btn-outline-primary" style="width: 100%; margin-right: 17%;">
@@ -51,6 +51,11 @@
             <tbody>
             {% if selected_voca_list %}
             <div style="margin-bottom:15%;">
+                {% if vocalist_class %}
+                {% with voca="vv" %}
+                <a class="btn btn-primary float-right mb-2" href="{% url 'pybo:vocaTest' voca_class=voca %}" style="color: white;">단어 테스트하기</a>
+                {% endwith %}
+                {% endif %}
                 <a href="{% url 'pybo:shuffle' %}" style="width: 100%;" class="btn btn-primary float-right mb-2">단어섞기</a>
             </div>
                 {% for voca in selected_voca_list %}
