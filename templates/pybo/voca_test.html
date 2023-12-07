@@ -85,7 +85,7 @@
             var vocaList = [];
             var randomPosition = [];
             var randAnswer = [];
-            var questionCount = 0;
+            var questionCount = 1;
             var correctCount = 0;
             var incorrectedList = [];
 
@@ -113,38 +113,40 @@
             console.log(vocaList);
             console.log(randomPosition);
             console.log(randAnswer);
-            document.getElementById('word').innerHTML = Object.keys(vocaList[questionCount]);
-            document.getElementById('answerBtnA').innerHTML = randAnswer[questionCount][randomPosition[questionCount][0]];
-            document.getElementById('answerBtnB').innerHTML = randAnswer[questionCount][randomPosition[questionCount][1]];
-            document.getElementById('answerBtnC').innerHTML = randAnswer[questionCount][randomPosition[questionCount][2]];
-            document.getElementById('answerBtnD').innerHTML = randAnswer[questionCount][randomPosition[questionCount][3]];
+            document.getElementById('word').innerHTML = Object.keys(vocaList[questionCount-1]);
+            document.getElementById('answerBtnA').innerHTML = randAnswer[questionCount-1][randomPosition[questionCount-1][0]];
+            document.getElementById('answerBtnB').innerHTML = randAnswer[questionCount-1][randomPosition[questionCount-1][1]];
+            document.getElementById('answerBtnC').innerHTML = randAnswer[questionCount-1][randomPosition[questionCount-1][2]];
+            document.getElementById('answerBtnD').innerHTML = randAnswer[questionCount-1][randomPosition[questionCount-1][3]];
             function checkAnswer(selectedOption) {
-                if(vocaList[questionCount][document.getElementById('word').innerHTML] == document.getElementById(selectedOption).innerHTML){
-                    if(questionCount != vocaList.length-1){
+                if(vocaList[questionCount-1][document.getElementById('word').innerHTML] == document.getElementById(selectedOption).innerHTML){
+                    if(questionCount != vocaList.length){
                         correctCount++;
                         questionCount++;
                         document.getElementById('word').innerHTML = Object.keys(vocaList[questionCount]);
-                        document.getElementById('answerBtnA').innerHTML = randAnswer[questionCount][randomPosition[questionCount][0]];
-                        document.getElementById('answerBtnB').innerHTML = randAnswer[questionCount][randomPosition[questionCount][1]];
-                        document.getElementById('answerBtnC').innerHTML = randAnswer[questionCount][randomPosition[questionCount][2]];
-                        document.getElementById('answerBtnD').innerHTML = randAnswer[questionCount][randomPosition[questionCount][3]];
+                        document.getElementById('answerBtnA').innerHTML = randAnswer[questionCount-1][randomPosition[questionCount-1][0]];
+                        document.getElementById('answerBtnB').innerHTML = randAnswer[questionCount-1][randomPosition[questionCount-1][1]];
+                        document.getElementById('answerBtnC').innerHTML = randAnswer[questionCount-1][randomPosition[questionCount-1][2]];
+                        document.getElementById('answerBtnD').innerHTML = randAnswer[questionCount-1][randomPosition[questionCount-1][3]];
                     }else{
-                        document.getElementById('correct').innerHTML = '점수' + (correctCount+1) + '/' + (questionCount+1);
+                        document.getElementById('correct').innerHTML = '점수' + (correctCount+1) + '/' + questionCount;
                         document.getElementById('incorrect').innerHTML = '오답: ' + (incorrectedList);
                     }
                 }else{
-                    if(questionCount != vocaList.length-1){
+                    if(questionCount != vocaList.length){
+                        incorrectedList.push(JSON.stringify(vocaList[questionCount - 1]));
                         questionCount++;
-                        document.getElementById('word').innerHTML = Object.keys(vocaList[questionCount]);
+                        document.getElementById('word').innerHTML = Object.keys(vocaList[questionCount-1]);
                         console.log(vocaList[questionCount-1]);
+                        console.log(incorrectedList);
+                        document.getElementById('answerBtnA').innerHTML = randAnswer[questionCount-1][randomPosition[questionCount-1][0]];
+                        document.getElementById('answerBtnB').innerHTML = randAnswer[questionCount-1][randomPosition[questionCount-1][1]];
+                        document.getElementById('answerBtnC').innerHTML = randAnswer[questionCount-1][randomPosition[questionCount-1][2]];
+                        document.getElementById('answerBtnD').innerHTML = randAnswer[questionCount-1][randomPosition[questionCount-1][3]];
+                    }else{
                         incorrectedList.push(JSON.stringify(vocaList[questionCount - 1]));
                         console.log(incorrectedList);
-                        document.getElementById('answerBtnA').innerHTML = randAnswer[questionCount][randomPosition[questionCount][0]];
-                        document.getElementById('answerBtnB').innerHTML = randAnswer[questionCount][randomPosition[questionCount][1]];
-                        document.getElementById('answerBtnC').innerHTML = randAnswer[questionCount][randomPosition[questionCount][2]];
-                        document.getElementById('answerBtnD').innerHTML = randAnswer[questionCount][randomPosition[questionCount][3]];
-                    }else{
-                        document.getElementById('correct').innerHTML = '점수' + (correctCount+1) + '/' + (questionCount+1);
+                        document.getElementById('correct').innerHTML = '점수' + correctCount + '/' + questionCount;
                         document.getElementById('incorrect').innerHTML = '오답: ' + (incorrectedList);
                     }
                 }
