@@ -134,7 +134,7 @@
                     }
                 }else{
                     if(questionCount != vocaList.length){
-                    incorrectedList.push(JSON.stringify(vocaList[questionCount - 1]));
+                        incorrectedList.push(JSON.stringify(vocaList[questionCount - 1]));
                         questionCount++;
                         document.getElementById('word').innerHTML = Object.keys(vocaList[questionCount-1]);
                         console.log(vocaList[questionCount-1]);
