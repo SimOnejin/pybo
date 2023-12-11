@@ -118,24 +118,31 @@
             document.getElementById('answerBtnB').innerHTML = randAnswer[questionCount-1][randomPosition[questionCount-1][1]];
             document.getElementById('answerBtnC').innerHTML = randAnswer[questionCount-1][randomPosition[questionCount-1][2]];
             document.getElementById('answerBtnD').innerHTML = randAnswer[questionCount-1][randomPosition[questionCount-1][3]];
-            function checkAnswer(selectedOption) {
+            async function checkAnswer(selectedOption) {
                 if(vocaList[questionCount-1][document.getElementById('word').innerHTML] == document.getElementById(selectedOption).innerHTML){
                     if(questionCount != vocaList.length){
                         correctCount++;
                         questionCount++;
+                        await correct(selectedOption);
                         document.getElementById('word').innerHTML = Object.keys(vocaList[questionCount-1]);
                         document.getElementById('answerBtnA').innerHTML = randAnswer[questionCount-1][randomPosition[questionCount-1][0]];
                         document.getElementById('answerBtnB').innerHTML = randAnswer[questionCount-1][randomPosition[questionCount-1][1]];
                         document.getElementById('answerBtnC').innerHTML = randAnswer[questionCount-1][randomPosition[questionCount-1][2]];
                         document.getElementById('answerBtnD').innerHTML = randAnswer[questionCount-1][randomPosition[questionCount-1][3]];
                     }else{
+                        await correct(selectedOption);
+                        document.getElementById('answerBtnA').disabled = true;
+                        document.getElementById('answerBtnB').disabled = true;
+                        document.getElementById('answerBtnC').disabled = true;
+                        document.getElementById('answerBtnD').disabled = true;
                         document.getElementById('correct').innerHTML = '점수' + (correctCount+1) + '/' + questionCount;
                         document.getElementById('incorrect').innerHTML = '오답: ' + (incorrectedList);
                     }
                 }else{
                     if(questionCount != vocaList.length){
-                        incorrectedList.push(JSON.stringify(vocaList[questionCount - 1]));
+		                incorrectedList.push(JSON.stringify(vocaList[questionCount - 1]));
                         questionCount++;
+                        await incorrect(selectedOption);
                         document.getElementById('word').innerHTML = Object.keys(vocaList[questionCount-1]);
                         console.log(vocaList[questionCount-1]);
                         console.log(incorrectedList);
@@ -145,10 +152,76 @@
                         document.getElementById('answerBtnD').innerHTML = randAnswer[questionCount-1][randomPosition[questionCount-1][3]];
                     }else{
                         incorrectedList.push(JSON.stringify(vocaList[questionCount - 1]));
+                        await incorrect(selectedOption);
+                        document.getElementById('answerBtnA').disabled = true;
+                        document.getElementById('answerBtnB').disabled = true;
+                        document.getElementById('answerBtnC').disabled = true;
+                        document.getElementById('answerBtnD').disabled = true;
                         document.getElementById('correct').innerHTML = '점수' + correctCount + '/' + questionCount;
                         document.getElementById('incorrect').innerHTML = '오답: ' + (incorrectedList);
                     }
                 }
+            }
+
+
+            async function incorrect(selectedOption) {
+                var button = document.getElementById(selectedOption);
+
+                // 변경할 색
+                var newColor = '#e74c3c'; // 빨간색
+
+                // 기존 색상 저장
+                var originalColor = button.style.backgroundColor;
+
+                // 버튼 색 변경
+                button.style.backgroundColor = newColor;
+
+                document.getElementById('answerBtnA').disabled = true;
+                document.getElementById('answerBtnB').disabled = true;
+                document.getElementById('answerBtnC').disabled = true;
+                document.getElementById('answerBtnD').disabled = true;
+
+                // 일정 시간 기다림
+                await delay(1000);
+
+                document.getElementById('answerBtnA').disabled = false;
+                document.getElementById('answerBtnB').disabled = false;
+                document.getElementById('answerBtnC').disabled = false;
+                document.getElementById('answerBtnD').disabled = false;
+
+                // 원래 색으로 돌아오기
+                button.style.backgroundColor = originalColor;
+            }
+            async function correct(selectedOption) {
+                var button = document.getElementById(selectedOption);
+
+                // 변경할 색
+                var newColor = '#4CAF50'; // 녹색
+
+                // 기존 색상 저장
+                var originalColor = button.style.backgroundColor;
+
+                // 버튼 색 변경
+                button.style.backgroundColor = newColor;
+
+                document.getElementById('answerBtnA').disabled = true;
+                document.getElementById('answerBtnB').disabled = true;
+                document.getElementById('answerBtnC').disabled = true;
+                document.getElementById('answerBtnD').disabled = true;
+
+                // 일정 시간 기다림
+                await delay(1000);
+
+                document.getElementById('answerBtnA').disabled = false;
+                document.getElementById('answerBtnB').disabled = false;
+                document.getElementById('answerBtnC').disabled = false;
+                document.getElementById('answerBtnD').disabled = false;
+
+                // 원래 색으로 돌아오기
+                button.style.backgroundColor = originalColor;
+            }
+            function delay(ms) {
+                return new Promise(resolve => setTimeout(resolve, ms));
             }
         </script>
     {% else %}
